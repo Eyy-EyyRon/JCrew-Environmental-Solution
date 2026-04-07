@@ -196,6 +196,85 @@ const GlobalStyles = () => (
       overflow-x: hidden;
     }
 
+    a, button { -webkit-tap-highlight-color: transparent; }
+    a:focus-visible, button:focus-visible {
+      outline: 3px solid rgba(159,203,152,0.55);
+      outline-offset: 3px;
+    }
+
+    /* Premium button system */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      border-radius: 1rem;
+      padding: 1rem 2.25rem;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 700;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+      will-change: transform;
+    }
+    .btn:active { transform: translateY(0) scale(0.99); }
+    .btn-primary {
+      background: var(--cream);
+      color: var(--forest);
+      box-shadow: 0 10px 34px rgba(0,0,0,0.24);
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 18px 52px rgba(0,0,0,0.3); }
+    .btn-ghost {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(8px);
+      color: var(--cream);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.18); }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Ambient blobs */
+    .ambient {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .blob {
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.55;
+      mix-blend-mode: screen;
+      animation: drift 18s ease-in-out infinite alternate;
+    }
+    .blob.blob-a {
+      left: -140px;
+      top: 10%;
+      background: radial-gradient(circle at 30% 30%, rgba(159,203,152,0.9), rgba(159,203,152,0) 60%);
+    }
+    .blob.blob-b {
+      right: -180px;
+      bottom: 6%;
+      background: radial-gradient(circle at 30% 30%, rgba(121,174,111,0.85), rgba(121,174,111,0) 62%);
+      animation-duration: 22s;
+    }
+    @keyframes drift {
+      from { transform: translate3d(0,0,0) scale(1); }
+      to { transform: translate3d(40px,-28px,0) scale(1.06); }
+    }
+
     .navbar-inner {
       display: flex;
       align-items: center;
@@ -622,7 +701,7 @@ const GlobalStyles = () => (
 );
 
 // --- NAVBAR ---
-const Navbar = ({ lang, setLang, t, forceSolid = false, activeRoute = '' }) => {
+const Navbar = ({ lang, setLang, t, forceSolid = false, activeRoute = '', activeSection = '' }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -657,8 +736,11 @@ const Navbar = ({ lang, setLang, t, forceSolid = false, activeRoute = '' }) => {
   const isActive = useCallback((href) => {
     if (href === '#') return activeRoute === '';
     if (href.startsWith('#/')) return activeRoute === href.slice(1);
+    if (href === '#sectors') return activeRoute === '' && activeSection === 'sectors';
+    if (href === '#pfas-response') return activeRoute === '' && activeSection === 'pfas-response';
+    if (href === '#contact') return activeRoute === '' && activeSection === 'contact';
     return false;
-  }, [activeRoute]);
+  }, [activeRoute, activeSection]);
 
   useEffect(() => {
     const onKeyDown = (e) => {
@@ -681,9 +763,9 @@ const Navbar = ({ lang, setLang, t, forceSolid = false, activeRoute = '' }) => {
               <a key={href} href={href} onClick={closeMobile} className={isActive(href) ? 'mobile-active' : ''}>{label}</a>
             ))}
             <div className="mobile-nav-divider" />
-            <a href="#sectors" onClick={goHomeAndScroll('sectors')}>{t.sectors}</a>
-            <a href="#pfas-response" onClick={goHomeAndScroll('pfas-response')}>{t.pfas}</a>
-            <a href="#contact" onClick={goHomeAndScroll('contact')}>{t.getStarted}</a>
+            <a href="#sectors" onClick={goHomeAndScroll('sectors')} className={isActive('#sectors') ? 'mobile-active' : ''}>{t.sectors}</a>
+            <a href="#pfas-response" onClick={goHomeAndScroll('pfas-response')} className={isActive('#pfas-response') ? 'mobile-active' : ''}>{t.pfas}</a>
+            <a href="#contact" onClick={goHomeAndScroll('contact')} className={isActive('#contact') ? 'mobile-active' : ''}>{t.getStarted}</a>
           </div>
         </div>
       </div>
@@ -758,11 +840,11 @@ const Navbar = ({ lang, setLang, t, forceSolid = false, activeRoute = '' }) => {
               </a>
             ))}
             {[['#sectors', t.sectors, goHomeAndScroll('sectors')], ['#pfas-response', t.pfas, goHomeAndScroll('pfas-response')]].map(([href, label, onClick]) => (
-              <a key={href} href={href} onClick={onClick} className="nav-link" style={{ color: scrolled ? 'var(--forest)' : 'rgba(242,237,194,0.9)', textDecoration: 'none' }}>{label}</a>
+              <a key={href} href={href} onClick={onClick} className={`nav-link ${isActive(href) ? 'nav-link-active' : ''}`} style={{ color: scrolled ? 'var(--forest)' : 'rgba(242,237,194,0.9)', textDecoration: 'none' }}>{label}</a>
             ))}
           </div>
 
-          <a href="#contact" onClick={goHomeAndScroll('contact')} style={{
+          <a href="#contact" onClick={goHomeAndScroll('contact')} className="btn" style={{
             background: 'var(--forest)',
             color: 'var(--cream)',
             padding: '0.65rem 1.75rem',
@@ -889,7 +971,12 @@ const Hero = ({ t }) => (
       <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 60%, var(--cream) 100%)' }} />
     </div>
 
-    <div style={{ position: 'relative', zIndex: 10, maxWidth: '1280px', margin: '0 auto', padding: '0 2rem', width: '100%', paddingTop: '8rem' }} className="hero-inner">
+    <div className="ambient" aria-hidden="true">
+      <div className="blob blob-a" />
+      <div className="blob blob-b" />
+    </div>
+
+    <div data-reveal style={{ position: 'relative', zIndex: 10, maxWidth: '1280px', margin: '0 auto', padding: '0 2rem', width: '100%', paddingTop: '8rem' }} className="hero-inner">
       <h1 className="fade-up-2" style={{
         fontFamily: "'Playfair Display', serif",
         fontSize: 'clamp(3.5rem, 8vw, 7rem)',
@@ -908,31 +995,11 @@ const Hero = ({ t }) => (
       </p>
 
       <div className="fade-up-4 hero-actions">
-        <a href="#contact" style={{
-          display: 'inline-flex', alignItems: 'center', gap: '0.6rem',
-          background: 'var(--cream)', color: 'var(--forest)',
-          padding: '1rem 2.25rem', borderRadius: '1rem',
-          fontWeight: 700, fontSize: '0.9rem', textDecoration: 'none',
-          boxShadow: '0 8px 32px rgba(0,0,0,0.25)',
-          transition: 'transform 0.2s, box-shadow 0.2s'
-        }}
-          onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = '0 16px 48px rgba(0,0,0,0.35)'; }}
-          onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 8px 32px rgba(0,0,0,0.25)'; }}
-        >
+        <a href="#contact" className="btn btn-primary">
           {t.consultation}
           <IconArrowRight size={16} />
         </a>
-        <a href="#sectors" style={{
-          display: 'inline-flex', alignItems: 'center',
-          background: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(8px)',
-          color: 'var(--cream)', border: '1px solid rgba(255,255,255,0.2)',
-          padding: '1rem 2.25rem', borderRadius: '1rem',
-          fontWeight: 600, fontSize: '0.9rem', textDecoration: 'none',
-          transition: 'background 0.2s'
-        }}
-          onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.18)'}
-          onMouseLeave={e => e.currentTarget.style.background = 'rgba(255,255,255,0.1)'}
-        >
+        <a href="#sectors" className="btn btn-ghost">
           {t.sectors} ↓
         </a>
       </div>
@@ -1020,7 +1087,7 @@ const Sectors = ({ t }) => {
   const translateX = `calc(-${current * (slideWidthPct + (GAP / (containerRef.current?.offsetWidth || 1000)) * 100)}% + ${dragDelta}px)`;
 
   return (
-    <section id="sectors" style={{ padding: '7rem 0 6rem', background: 'var(--cream)', overflow: 'hidden' }}>
+    <section id="sectors" data-reveal style={{ padding: '7rem 0 6rem', background: 'var(--cream)', overflow: 'hidden' }}>
       <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }}>
         <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '3.5rem', flexWrap: 'wrap', gap: '1.5rem' }}>
           <div>
@@ -1117,7 +1184,7 @@ const Sectors = ({ t }) => {
 
 // --- STRATEGY / PUZZLE (Option 2 - Subtle BG) ---
 const Strategy = ({ t }) => (
-  <section id="pfas-response" style={{ padding: '7rem 0', background: 'var(--forest-deep)', position: 'relative', overflow: 'hidden' }}>
+  <section id="pfas-response" data-reveal style={{ padding: '7rem 0', background: 'var(--forest-deep)', position: 'relative', overflow: 'hidden' }}>
     <div style={{
       position: 'absolute',
       left: 0,
@@ -1191,7 +1258,7 @@ const Strategy = ({ t }) => (
 
 /// --- CONTACT ---
 const Contact = ({ t }) => (
-  <section id="contact" style={{ position: 'relative', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '6rem 2rem', overflow: 'hidden' }}>
+  <section id="contact" data-reveal style={{ position: 'relative', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '6rem 2rem', overflow: 'hidden' }}>
     <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
       <img src={waterCupImg} alt="bg" className="animate-slow-zoom" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
       <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(105deg, rgba(26,58,29,0.97) 0%, rgba(45,90,49,0.75) 55%, rgba(26,58,29,0.5) 100%)' }} />
@@ -1297,6 +1364,8 @@ export default function App() {
   const [lang, setLang] = useState('en');
   const t = translations[lang];
 
+  const [activeSection, setActiveSection] = useState('');
+
   const [route, setRoute] = useState(() => {
     const h = window.location.hash || '';
     return h.startsWith('#/') ? h.slice(1) : '';
@@ -1324,6 +1393,52 @@ export default function App() {
     return () => clearTimeout(timer);
   }, [route]);
 
+  useEffect(() => {
+    const revealEls = Array.from(document.querySelectorAll('[data-reveal]'));
+    revealEls.forEach((el) => {
+      el.classList.add('reveal');
+    });
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('reveal-in');
+          io.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -10% 0px' }
+    );
+
+    revealEls.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, [route, loading]);
+
+  useEffect(() => {
+    if (route !== '') return;
+
+    const sections = ['sectors', 'pfas-response', 'contact']
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
+
+    if (sections.length === 0) return;
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => (b.intersectionRatio ?? 0) - (a.intersectionRatio ?? 0));
+        if (visible[0]?.target?.id) {
+          setActiveSection(visible[0].target.id);
+        }
+      },
+      { threshold: [0.35, 0.5, 0.65], rootMargin: '-20% 0px -55% 0px' }
+    );
+
+    sections.forEach((s) => io.observe(s));
+    return () => io.disconnect();
+  }, [route]);
+
   const pageMotion = {
     initial: { opacity: 0, y: 10 },
     animate: { opacity: 1, y: 0, transition: { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] } },
@@ -1334,7 +1449,7 @@ export default function App() {
     <>
       <GlobalStyles />
       <div style={{ fontFamily: "'DM Sans', sans-serif" }}>
-        <Navbar lang={lang} setLang={setLang} t={t} forceSolid={route !== ''} activeRoute={route} />
+        <Navbar lang={lang} setLang={setLang} t={t} forceSolid={route !== ''} activeRoute={route} activeSection={activeSection} />
         <main>
           <AnimatePresence mode="wait" initial={false}>
             {loading ? (
