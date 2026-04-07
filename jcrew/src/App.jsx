@@ -1189,7 +1189,7 @@ const Strategy = ({ t }) => (
   </section>
 );
 
-// --- CONTACT ---
+/// --- CONTACT ---
 const Contact = ({ t }) => (
   <section id="contact" style={{ position: 'relative', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '6rem 2rem', overflow: 'hidden' }}>
     <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
