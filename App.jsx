@@ -706,7 +706,7 @@ const Navbar = ({ lang, setLang, t, forceSolid = false, activeRoute = '' }) => {
           >
             <img 
               src="/logo.png" 
-              alt=" BioAg Logo" 
+              alt="JCrew Environmental Logo" 
               className="w-full h-full object-contain"
             />
           </div>
@@ -717,7 +717,7 @@ const Navbar = ({ lang, setLang, t, forceSolid = false, activeRoute = '' }) => {
                 font-serif font-bold leading-none transition-colors duration-300
                 ${scrolled ? 'text-green-900' : 'text-white'}
               `}
-            />
+            >JCrew</div>
             <div 
               style={{ fontSize: `${textSubSize}rem` }}
               className={`
