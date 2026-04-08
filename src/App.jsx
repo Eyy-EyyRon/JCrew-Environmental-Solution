@@ -1107,6 +1107,59 @@ const GlobalStyles = () => (
       .nav-get-started { display: none !important; }
     }
 
+    /* Slide-in animation for cards - left/right alternating */
+    .slide-card {
+      opacity: 1;
+      transform: translateX(0);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    /* Animation active - cards start hidden and offset */
+    .slide-card.animate {
+      opacity: 0;
+    }
+
+    .slide-card.animate:nth-child(odd) {
+      transform: translateX(-80px);
+    }
+
+    .slide-card.animate:nth-child(even) {
+      transform: translateX(80px);
+    }
+
+    /* Revealed state */
+    .slide-card.revealed {
+      opacity: 1;
+      transform: translateX(0) !important;
+    }
+
+    /* Fallback: ensure cards are visible if JS fails */
+    @media (prefers-reduced-motion: reduce) {
+      .slide-card { opacity: 1 !important; transform: none !important; }
+    }
+
+    /* Card style variants */
+    .slide-card-dark {
+      border: 1px solid rgba(159,203,152,0.15);
+      border-radius: 1.5rem;
+      padding: 1.75rem;
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(6px);
+    }
+
+    .slide-card-light {
+      border: 1px solid rgba(121,174,111,0.25);
+      border-radius: 1.5rem;
+      padding: 2rem;
+      background: rgba(255,255,255,0.55);
+    }
+
+    /* Stagger delays for cascading effect */
+    .slide-card:nth-child(1) { transition-delay: 0ms; }
+    .slide-card:nth-child(2) { transition-delay: 120ms; }
+    .slide-card:nth-child(3) { transition-delay: 240ms; }
+    .slide-card:nth-child(4) { transition-delay: 360ms; }
+
     /* Dot animations */
     .dot-active {
       width: 2rem !important;
@@ -1926,20 +1979,14 @@ const HowWeWorkPage = ({ t }) => (
               {' '}
               <span style={{ color: 'var(--mint)', fontStyle: 'italic' }}>program delivery</span>
             </h2>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.5rem' }}>
+            <div className="slide-card-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.5rem' }}>
               {[
                 { num: '01', title: 'Discovery & Scoping', desc: 'We clarify goals, constraints, stakeholders, and compliance requirements before any field work begins.' },
                 { num: '02', title: 'Program Design', desc: 'We structure the work into phased deliverables with clear decision points, budgets, and accountability.' },
                 { num: '03', title: 'Execution & Coordination', desc: 'We manage procurement, contractors, reporting, and stakeholder communication throughout delivery.' },
                 { num: '04', title: 'Documentation & Handoff', desc: 'We compile audit-ready records, operational guidance, and continuity plans for long-term success.' }
               ].map(({ num, title, desc }) => (
-                <div key={num} style={{
-                  border: '1px solid rgba(159,203,152,0.15)',
-                  borderRadius: '1.5rem',
-                  padding: '1.75rem',
-                  background: 'rgba(255,255,255,0.06)',
-                  backdropFilter: 'blur(6px)'
-                }}>
+                <div key={num} className="slide-card slide-card-dark">
                   <div style={{ color: 'var(--mint)', fontWeight: 900, fontSize: '0.85rem', letterSpacing: '0.15em', marginBottom: '0.75rem' }}>{num}</div>
                   <div style={{ color: 'var(--cream)', fontWeight: 700, fontSize: '1.05rem', marginBottom: '0.5rem' }}>{title}</div>
                   <p style={{ color: 'rgba(242,237,194,0.65)', lineHeight: 1.7, fontSize: '0.95rem' }}>{desc}</p>
@@ -1953,19 +2000,14 @@ const HowWeWorkPage = ({ t }) => (
 
     <section data-reveal style={{ padding: '0 0 6rem' }}>
       <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>
+        <div className="slide-card-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>
           {[
             ['Technical Oversight', 'Engineering review, QA/QC coordination, and field accountability.'],
             ['Financial Planning', 'Grant alignment, capital planning, and procurement support.'],
             ['Regulatory Navigation', 'Permitting, compliance reporting, and public records.'],
             ['Stakeholder Management', 'Community engagement, agency coordination, and transparency.']
           ].map(([title, desc]) => (
-            <div key={title} style={{
-              border: '1px solid rgba(121,174,111,0.25)',
-              borderRadius: '1.5rem',
-              padding: '2rem',
-              background: 'rgba(255,255,255,0.55)'
-            }}>
+            <div key={title} className="slide-card slide-card-light">
               <div style={{ color: 'var(--forest)', fontWeight: 800, fontSize: '1.1rem', marginBottom: '0.6rem', letterSpacing: '0.02em' }}>{title}</div>
               <p style={{ color: 'rgba(45,90,49,0.72)', lineHeight: 1.7 }}>{desc}</p>
             </div>
@@ -2314,6 +2356,82 @@ export default function App() {
 
     revealEls.forEach((el) => io.observe(el));
     return () => io.disconnect();
+  }, [route, loading]);
+
+  // Slide-in animation for How We Work cards - triggers on scroll
+  useEffect(() => {
+    if (loading) return;
+
+    // Small delay to let React render complete
+    const initTimer = setTimeout(() => {
+      const slideCards = Array.from(document.querySelectorAll('.slide-card'));
+      if (slideCards.length === 0) return;
+
+      // Add animate class to enable animation states
+      slideCards.forEach((card) => card.classList.add('animate'));
+
+      // Function to reveal a card
+      const revealCard = (card, delay = 0) => {
+        setTimeout(() => {
+          card.classList.add('revealed');
+        }, delay);
+      };
+
+      // Check which cards are already in viewport
+      const checkAndReveal = () => {
+        slideCards.forEach((card, index) => {
+          if (card.classList.contains('revealed')) return;
+
+          const rect = card.getBoundingClientRect();
+          const viewportHeight = window.innerHeight;
+          // Card is in viewport if its top is within 80% of screen height
+          const isInViewport = rect.top < viewportHeight * 0.85 && rect.bottom > 0;
+
+          if (isInViewport) {
+            revealCard(card, index * 120); // Stagger delay
+          }
+        });
+      };
+
+      // Initial check
+      checkAndReveal();
+
+      // Set up observer for cards not yet visible
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const card = entry.target;
+            if (entry.isIntersecting && !card.classList.contains('revealed')) {
+              const index = slideCards.indexOf(card);
+              revealCard(card, index * 120);
+              observer.unobserve(card);
+            }
+          });
+        },
+        { threshold: 0.15, rootMargin: '0px 0px -5% 0px' }
+      );
+
+      // Observe cards that aren't revealed yet
+      slideCards.forEach((card) => {
+        if (!card.classList.contains('revealed')) {
+          observer.observe(card);
+        }
+      });
+
+      // Also listen to scroll as backup
+      const handleScroll = () => {
+        checkAndReveal();
+      };
+      window.addEventListener('scroll', handleScroll, { passive: true });
+
+      // Cleanup
+      return () => {
+        observer.disconnect();
+        window.removeEventListener('scroll', handleScroll);
+      };
+    }, 150);
+
+    return () => clearTimeout(initTimer);
   }, [route, loading]);
 
   useEffect(() => {
