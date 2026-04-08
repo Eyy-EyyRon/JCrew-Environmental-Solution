@@ -3,15 +3,28 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 // Assets Imports
 import heroVideo from './assets/Hero-Home-small.mp4';
-import airportImg from './assets/airports.jpg';
-import businessImg from './assets/business.jpg';
-import columnImg from './assets/column.jpg';
-import energyImg from './assets/energy.jpg';
-import fireImg from './assets/firefighter.jpg';
-import municipalImg from './assets/Municipal.jpg';
-import drinkingImg from './assets/Public-drinking.jpg';
+import irrigation2Img from './assets/irrigation2.jpg';
+import rainwaterCollectionImg from './assets/rainwatercollection.webp';
+import wastewaterImg from './assets/wastewater1.webp';
+import riverImg from './assets/river1.webp';
+import recyclingImg from './assets/recycling1.webp';
+import segregationImg from './assets/segregation.webp';
 import puzzleImg from './assets/puzzle.jpg';
 import waterCupImg from './assets/watercup.jpg';
+import heroEnergyVideo from './assets/Hero-Energy-small.mp4';
+import heroPFASVideo from './assets/Hero-PSAF-small.mp4';
+import cleanEnergyImg from './assets/clean-energy.webp';
+import cleanEnergy1Img from './assets/clean energy1.webp';
+import cleanEnergy2Img from './assets/clean energy2.jpg';
+import wastewater2Img from './assets/wastewater2.webp';
+import waterTreatmentPlantImg from './assets/water-treatment-plant.webp';
+import biomassImg from './assets/wooden-fuel-for-bio-power-plant-1024x714.webp';
+import nuclearImg from './assets/nuclear-power-plant-cooling-towers-51828269.webp';
+import hydroelectricImg from './assets/hydroelectric.webp';
+import geothermalImg from './assets/aerial-view-of-geothermal-power-plant.webp';
+import bambooImg from './assets/bamboo.jpg';
+import heroHowVideo from './assets/Hero-How-small.mp4';
+import heroFundingVideo from './assets/Hero-Funding-small.mp4';
 
 // --- TRANSLATIONS ---
 const translations = {
@@ -20,21 +33,22 @@ const translations = {
     about: "About",
     services: "Services",
     insights: "Insights",
+    cleanEnergyVision: "Clean Energy Vision",
     sectors: "Sectors",
     pfas: "PFAS Response",
     getStarted: "Get Started",
-    heroTitle1: "J Crew",
-    heroTitle2: "Response.",
-    heroSub: "Coordinating regulatory, financial, and technical execution for the nation's most complex environmental challenges.",
-    consultation: "Request Consultation",
-    sectorsTitle1: "Sectors of",
-    sectorsTitle2: "Impact.",
-    sectorsSub: "Specialized response coordination across critical infrastructure and public safety sectors.",
-    strategyTitle1: "Piecing together the",
-    strategyTitle2: "Accountability",
-    strategyTitle3: "puzzle.",
-    strategySub: "Environmental obligations aren't just technical—they are financial and legal.  integrates these disparate pieces into a single, defensible program.",
-    contactTitle: "Let's begin the conversation.",
+    heroTitle1: "JCrew",
+    heroTitle2: "Environmental Solution.",
+    heroSub: "Program management and field execution for PFAS response, infrastructure compliance, and clean energy deployment—built for public agencies and complex sites.",
+    consultation: "Request a Consultation",
+    sectorsTitle1: "Where",
+    sectorsTitle2: "We Deliver.",
+    sectorsSub: "Practical support across the sites where environmental risk, operational urgency, and public accountability intersect.",
+    strategyTitle1: "Turning risk into",
+    strategyTitle2: "a defensible program",
+    strategyTitle3: ".",
+    strategySub: "Environmental work fails when strategy and execution are separated. JCrew Environmental Solution aligns engineering, funding, and compliance into one accountable plan—then drives it through procurement, delivery, and reporting.",
+    contactTitle: "Tell us what you’re facing.",
     submit: "Submit Request"
   },
   es: {
@@ -42,6 +56,7 @@ const translations = {
     about: "Acerca de",
     services: "Servicios",
     insights: "Recursos",
+    cleanEnergyVision: "Visión de Energía Limpia",
     sectors: "Sectores",
     pfas: "Respuesta PFAS",
     getStarted: "Empezar",
@@ -67,6 +82,525 @@ const IconGear = () => (
     <circle cx="12" cy="12" r="3"/>
     <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
   </svg>
+);
+
+const CleanEnergyVisionPage = ({ t }) => (
+  <section style={{ background: 'var(--cream)' }}>
+    <header style={{ position: 'relative', minHeight: '88vh', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
+      <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+        <video autoPlay loop muted playsInline preload="metadata" style={{ width: '100%', height: '100%', objectFit: 'cover' }}>
+          <source src={heroEnergyVideo} type="video/mp4" />
+        </video>
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.22) 55%, rgba(0,0,0,0.12) 100%)' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(0,0,0,0.12) 0%, transparent 55%, rgba(0,0,0,0.45) 100%)' }} />
+      </div>
+
+      <div data-reveal style={{ position: 'relative', zIndex: 10, maxWidth: '1280px', margin: '0 auto', padding: '0 2rem', width: '100%', paddingTop: '9rem' }}>
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.75rem', flexWrap: 'wrap', marginBottom: '0.85rem' }}>
+          <div style={{ color: 'rgba(242,237,194,0.72)', fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase', fontSize: '0.75rem' }}>From</div>
+          <div style={{ color: 'rgba(242,237,194,0.92)', fontWeight: 800, letterSpacing: '0.14em', textTransform: 'uppercase', fontSize: '0.78rem' }}>Waste & Infrastructure</div>
+        </div>
+
+        <h1 className="page-title" style={{
+          fontFamily: "'Playfair Display', serif",
+          fontSize: 'clamp(3.2rem, 7.4vw, 6.6rem)',
+          fontWeight: 900,
+          color: 'var(--cream)',
+          lineHeight: 0.95,
+          letterSpacing: '-0.02em',
+          marginBottom: '1.15rem',
+          textShadow: '0 10px 40px rgba(0,0,0,0.35)'
+        }}>
+          Integrated
+          {' '}
+          <span style={{ color: 'var(--mint)', fontStyle: 'italic' }}>Clean Energy</span>
+        </h1>
+
+        <p style={{ fontSize: '1.15rem', color: 'rgba(242,237,194,0.84)', maxWidth: 740, lineHeight: 1.75, fontWeight: 300 }}>
+          The Clean Energy Division of JCrew Environmental Solution designs and coordinates waste-to-clean-energy programs that reduce
+          landfill dependence, stabilize operating costs, and deliver measurable emissions reduction through clean fuels and
+          electrification pathways.
+        </p>
+      </div>
+    </header>
+
+    <section data-reveal style={{ padding: '6rem 0 5rem' }}>
+      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }}>
+        <div style={{
+          position: 'relative',
+          borderRadius: '2rem',
+          overflow: 'hidden',
+          border: '1px solid rgba(121,174,111,0.25)',
+          boxShadow: '0 20px 70px rgba(26,58,29,0.12)',
+          backgroundImage: `url(${cleanEnergyImg})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}>
+          <div style={{ position: 'absolute', inset: 0, background: 'rgba(242,237,194,0.78)' }} />
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(26,58,29,0.16) 0%, rgba(26,58,29,0.06) 60%, rgba(26,58,29,0.03) 100%)' }} />
+          <div style={{ position: 'relative', zIndex: 2, padding: '3.25rem 3rem' }}>
+          <h2 style={{
+            fontFamily: "'Playfair Display', serif",
+            fontSize: 'clamp(2.25rem, 4.5vw, 3.75rem)',
+            fontWeight: 900,
+            lineHeight: 1.05,
+            color: 'var(--forest)',
+            letterSpacing: '-0.02em',
+            marginBottom: '1rem'
+          }}>
+            Designed for execution
+            {' '}
+            <span style={{ color: 'var(--sage)', fontStyle: 'italic' }}>Built for delivery</span>
+          </h2>
+          <p style={{ fontSize: '1.05rem', color: 'rgba(45,90,49,0.72)', lineHeight: 1.8, marginBottom: '1.25rem' }}>
+            We manage multi-stakeholder clean energy programs end-to-end—aligning feedstock, permitting, offtake, and financing into a
+            deliverable infrastructure plan with clear reporting and accountability.
+          </p>
+          <p style={{ fontSize: '1.05rem', color: 'rgba(45,90,49,0.72)', lineHeight: 1.8, marginBottom: '1.25rem' }}>
+            Clean energy projects are long-horizon infrastructure programs—not demos. Success requires disciplined coordination across
+            procurement, environmental review, permitting, workforce readiness, construction delivery, and long-term operations.
+          </p>
+          <div style={{ border: '1px solid rgba(121,174,111,0.25)', borderRadius: '1.5rem', padding: '1.5rem 1.5rem', background: 'rgba(255,255,255,0.55)' }}>
+            <div style={{ fontWeight: 900, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--forest)', marginBottom: '0.75rem', fontSize: '0.8rem' }}>
+              End-to-End Clean Energy Project Coordination
+            </div>
+            <div style={{ color: 'rgba(45,90,49,0.72)', lineHeight: 1.75, fontSize: '0.98rem' }}>
+              The Clean Energy Division serves as the Program Integrator for Waste-to-Energy and Clean Fuel Infrastructure Projects.
+            </div>
+            <div className="divider" style={{ margin: '1.25rem 0' }} />
+            <ul style={{ paddingLeft: '1.1rem', display: 'grid', gap: '0.7rem', color: 'rgba(45,90,49,0.72)', lineHeight: 1.7, fontSize: '0.98rem' }}>
+              <li>Feedstock sourcing and long-term supply alignment</li>
+              <li>Technology evaluation and integration planning (non-proprietary)</li>
+              <li>Project siting, stakeholder alignment, and community engagement</li>
+              <li>Offtake strategy and end-market coordination (aviation, industrial, and grid)</li>
+              <li>Permitting pathway, environmental review, and compliance planning</li>
+              <li>Financing readiness support and capital stack coordination</li>
+              <li>Workforce readiness and local supplier participation planning</li>
+              <li>Delivery oversight through construction, commissioning, and handoff</li>
+              <li>Ongoing performance reporting and operational continuity planning</li>
+            </ul>
+            <div className="divider" style={{ margin: '1.25rem 0 0.9rem' }} />
+            <div style={{ fontWeight: 900, color: 'var(--forest)', letterSpacing: '0.02em' }}>
+              We do not operate as an equipment vendor or speculative developer.
+            </div>
+            <div style={{ color: 'rgba(45,90,49,0.72)', lineHeight: 1.7, marginTop: '0.35rem' }}>
+              We organize, align, and manage the full delivery ecosystem.
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section data-reveal style={{ padding: '0 0 6rem' }}>
+      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }}>
+        <div className="clean-energy-panels" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '1.5rem' }}>
+          {[{
+            img: cleanEnergy1Img,
+            title: 'Project delivery clarity',
+            sub: 'Scope, permitting, procurement, and reporting—organized into a single execution plan.'
+          }, {
+            img: cleanEnergy2Img,
+            title: 'Infrastructure-ready outcomes',
+            sub: 'Programs structured for financing readiness, construction delivery, and long-term operations.'
+          }].map(({ img, title, sub }) => (
+            <div key={title} style={{
+              position: 'relative',
+              borderRadius: '2rem',
+              overflow: 'hidden',
+              border: '1px solid rgba(121,174,111,0.22)',
+              boxShadow: '0 20px 70px rgba(26,58,29,0.12)',
+              minHeight: 280,
+              backgroundImage: `url(${img})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center'
+            }}>
+              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(26,58,29,0.72) 0%, rgba(26,58,29,0.35) 55%, rgba(26,58,29,0.22) 100%)' }} />
+              <div style={{ position: 'relative', zIndex: 2, padding: '2.25rem 2.25rem' }}>
+                <div style={{ color: 'rgba(159,203,152,0.9)', fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase', fontSize: '0.7rem', marginBottom: '0.85rem' }}>Clean energy delivery</div>
+                <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(1.65rem, 3.6vw, 2.4rem)', color: 'var(--cream)', lineHeight: 1.1, marginBottom: '0.75rem' }}>{title}</h3>
+                <p style={{ color: 'rgba(242,237,194,0.78)', lineHeight: 1.75, fontSize: '1rem', maxWidth: 520 }}>{sub}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section data-reveal style={{ padding: '0 0 6rem' }}>
+      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }}>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+          gap: '1.25rem'
+        }}>
+          {[
+            { title: 'Biomass & bio-power', img: biomassImg },
+            { title: 'Nuclear & grid reliability', img: nuclearImg },
+            { title: 'Hydroelectric systems', img: hydroelectricImg },
+            { title: 'Geothermal generation', img: geothermalImg },
+          ].map(({ title, img }) => (
+            <div key={title} style={{
+              position: 'relative',
+              borderRadius: '1.75rem',
+              overflow: 'hidden',
+              border: '1px solid rgba(121,174,111,0.22)',
+              boxShadow: '0 18px 60px rgba(26,58,29,0.1)',
+              minHeight: 240,
+              backgroundImage: `url(${img})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center'
+            }}>
+              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(26,58,29,0.9) 0%, rgba(26,58,29,0.35) 55%, rgba(26,58,29,0.22) 100%)' }} />
+              <div style={{ position: 'absolute', left: '1.25rem', right: '1.25rem', bottom: '1.25rem' }}>
+                <div style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  padding: '0.3rem 0.75rem',
+                  borderRadius: '999px',
+                  border: '1px solid rgba(242,237,194,0.22)',
+                  background: 'rgba(242,237,194,0.12)',
+                  color: 'rgba(242,237,194,0.92)',
+                  fontSize: '0.62rem',
+                  fontWeight: 800,
+                  letterSpacing: '0.18em',
+                  textTransform: 'uppercase'
+                }}>{title}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section data-reveal style={{ padding: '1rem 0 6rem' }}>
+      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }}>
+        <div style={{
+          position: 'relative',
+          borderRadius: '2rem',
+          overflow: 'hidden',
+          background: 'var(--forest-deep)',
+          border: '1px solid rgba(159,203,152,0.15)'
+        }}>
+          <img src={bambooImg} alt="Sustainable materials" loading="lazy" decoding="async" style={{ width: '100%', height: 420, objectFit: 'cover', opacity: 0.32, filter: 'blur(1px) saturate(0.95)' }} />
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(105deg, rgba(26,58,29,0.92) 0%, rgba(45,90,49,0.62) 55%, rgba(26,58,29,0.45) 100%)' }} />
+          <div style={{ position: 'absolute', inset: 0, padding: '3.25rem 3rem', display: 'flex', alignItems: 'flex-end' }}>
+            <div style={{ maxWidth: 760 }}>
+              <div style={{ color: 'rgba(159,203,152,0.9)', fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase', fontSize: '0.7rem', marginBottom: '0.75rem' }}>Environmental programs that strengthen communities</div>
+              <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(2rem, 4.6vw, 3.25rem)', color: 'var(--cream)', lineHeight: 1.05, marginBottom: '0.85rem' }}>
+                Aligned with Environmental Justice,
+                {' '}
+                <span style={{ color: 'var(--mint)', fontStyle: 'italic' }}>workforce readiness</span>
+              </h3>
+              <p style={{ color: 'rgba(242,237,194,0.82)', lineHeight: 1.75, fontSize: '1.02rem' }}>
+                JCrew Environmental Solution aligns clean energy work with environmental justice, workforce readiness, and domestic
+                supply-chain priorities. Programs are structured to deliver long-term public value through jobs, durable infrastructure,
+                and transparent reporting.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="clean-energy-consultation" data-reveal style={{ padding: '1rem 0 7rem' }}>
+      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }} className="contact-grid">
+        <div className="contact-details">
+          <h2 style={{
+            fontFamily: "'Playfair Display', serif",
+            fontSize: 'clamp(2.6rem, 6vw, 4.2rem)',
+            fontWeight: 900,
+            color: 'var(--forest)',
+            lineHeight: 1.02,
+            letterSpacing: '-0.02em',
+            marginBottom: '1rem'
+          }}>
+            Start with a
+            {' '}
+            <span style={{ color: 'var(--sage)', fontStyle: 'italic' }}>confidential conversation</span>
+          </h2>
+          <p style={{ fontSize: '1.05rem', color: 'rgba(45,90,49,0.72)', lineHeight: 1.8, marginBottom: '1.25rem' }}>
+            No obligation. An initial conversation is exploratory—an opportunity to understand your goals, constraints, and timeline,
+            and to determine whether a clean energy program is feasible for your waste streams and infrastructure.
+          </p>
+          <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center' }}>
+            <span className="badge" style={{ marginBottom: 0, color: 'var(--forest)', borderColor: 'rgba(121,174,111,0.35)', background: 'rgba(121,174,111,0.12)' }}>
+              <span className="badge-dot" style={{ background: 'var(--forest)' }} />
+              Call: (844) 878-7347
+            </span>
+          </div>
+        </div>
+
+        <div className="contact-card">
+          <div style={{
+            background: 'rgba(10,24,12,0.78)',
+            backdropFilter: 'blur(24px)',
+            border: '1px solid rgba(159,203,152,0.22)',
+            borderRadius: '2rem',
+            padding: '2.5rem',
+            boxShadow: '0 28px 78px rgba(0,0,0,0.55)'
+          }}>
+            <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.5rem', color: 'var(--cream)', marginBottom: '0.5rem', fontWeight: 700 }}>Send a Request</h3>
+            <p style={{ fontSize: '0.85rem', color: 'rgba(242,237,194,0.4)', marginBottom: '2rem' }}>We typically respond within 24 hours.</p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+              {[
+                { label: 'Full Name', type: 'text', placeholder: 'Ex: Michael Chen' },
+                { label: 'Institutional Email', type: 'email', placeholder: 'm.chen@municipality.gov' },
+                { label: 'Organization', type: 'text', placeholder: 'City of Philadelphia' },
+              ].map(({ label, type, placeholder }) => (
+                <div key={label}>
+                  <label style={{ display: 'block', fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--mint)', marginBottom: '0.5rem' }}>{label}</label>
+                  <input type={type} placeholder={placeholder} className="form-input" />
+                </div>
+              ))}
+              <div>
+                <label style={{ display: 'block', fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--mint)', marginBottom: '0.5rem' }}>Assistance Required</label>
+                <textarea rows={4} placeholder="Briefly describe your clean energy infrastructure program..." className="form-input" style={{ resize: 'none' }} />
+              </div>
+              <button
+                style={{
+                  width: '100%', padding: '1.1rem',
+                  background: 'linear-gradient(135deg, var(--mint), var(--sage))',
+                  color: 'var(--forest-deep)', border: 'none', borderRadius: '1rem',
+                  fontWeight: 700, fontSize: '0.85rem', letterSpacing: '0.15em',
+                  textTransform: 'uppercase', cursor: 'pointer',
+                  boxShadow: '0 8px 24px rgba(159,203,152,0.3)',
+                  transition: 'transform 0.2s, box-shadow 0.2s',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.6rem'
+                }}
+                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 14px 36px rgba(159,203,152,0.4)'; }}
+                onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 8px 24px rgba(159,203,152,0.3)'; }}
+              >
+                {t.submit}
+                <IconArrowRight size={16} />
+              </button>
+              <div style={{ color: 'rgba(242,237,194,0.55)', fontSize: '0.85rem', lineHeight: 1.6 }}>
+                Submitting this form does not create any obligation. Information provided will be treated as confidential and used solely
+                to determine whether an initial discussion is appropriate.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+);
+
+const PFASResponseDivisionPage = ({ t }) => (
+  <section style={{ background: 'var(--cream)' }}>
+    <header style={{ position: 'relative', minHeight: '88vh', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
+      <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+        <video autoPlay loop muted playsInline preload="metadata" style={{ width: '100%', height: '100%', objectFit: 'cover' }}>
+          <source src={heroPFASVideo} type="video/mp4" />
+        </video>
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.28) 55%, rgba(0,0,0,0.14) 100%)' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(0,0,0,0.12) 0%, transparent 55%, rgba(0,0,0,0.5) 100%)' }} />
+      </div>
+
+      <div data-reveal style={{ position: 'relative', zIndex: 10, maxWidth: '1280px', margin: '0 auto', padding: '0 2rem', width: '100%', paddingTop: '9rem' }}>
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.75rem', flexWrap: 'wrap', marginBottom: '0.85rem' }}>
+          <div style={{ color: 'rgba(242,237,194,0.72)', fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase', fontSize: '0.75rem' }}>PFAS</div>
+          <div style={{ color: 'rgba(242,237,194,0.92)', fontWeight: 800, letterSpacing: '0.14em', textTransform: 'uppercase', fontSize: '0.78rem' }}>Response Division</div>
+        </div>
+
+        <h1 className="page-title" style={{
+          fontFamily: "'Playfair Display', serif",
+          fontSize: 'clamp(3.2rem, 7.4vw, 6.6rem)',
+          fontWeight: 900,
+          color: 'var(--cream)',
+          lineHeight: 0.95,
+          letterSpacing: '-0.02em',
+          marginBottom: '1.15rem',
+          textShadow: '0 10px 40px rgba(0,0,0,0.35)'
+        }}>
+          Defensible
+          {' '}
+          <span style={{ color: 'var(--mint)', fontStyle: 'italic' }}>PFAS</span>
+          {' '}
+          Programs
+        </h1>
+
+        <p style={{ fontSize: '1.15rem', color: 'rgba(242,237,194,0.84)', maxWidth: 760, lineHeight: 1.75, fontWeight: 300 }}>
+          JCrew Environmental Solution supports agencies and facilities with PFAS investigation coordination, program management, and
+          reporting—built to stand up to audits, public records, and long-term operational realities.
+        </p>
+      </div>
+    </header>
+
+    <section data-reveal style={{ padding: '6rem 0 5rem' }}>
+      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }}>
+        <div style={{
+          position: 'relative',
+          borderRadius: '2rem',
+          overflow: 'hidden',
+          border: '1px solid rgba(121,174,111,0.22)',
+          boxShadow: '0 20px 70px rgba(26,58,29,0.12)',
+          backgroundImage: `url(${riverImg})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }}>
+          <div style={{ position: 'absolute', inset: 0, background: 'rgba(242,237,194,0.78)' }} />
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(26,58,29,0.18) 0%, rgba(26,58,29,0.06) 60%, rgba(26,58,29,0.03) 100%)' }} />
+          <div style={{ position: 'relative', zIndex: 2, padding: '3.25rem 3rem' }}>
+            <h2 style={{
+              fontFamily: "'Playfair Display', serif",
+              fontSize: 'clamp(2.25rem, 4.5vw, 3.75rem)',
+              fontWeight: 900,
+              lineHeight: 1.05,
+              color: 'var(--forest)',
+              letterSpacing: '-0.02em',
+              marginBottom: '1rem'
+            }}>
+              Built for compliance
+              {' '}
+              <span style={{ color: 'var(--sage)', fontStyle: 'italic' }}>and public accountability</span>
+            </h2>
+            <p style={{ fontSize: '1.05rem', color: 'rgba(45,90,49,0.72)', lineHeight: 1.8, marginBottom: '1.25rem' }}>
+              PFAS programs require coordinated sampling strategy, stakeholder communication, procurement discipline, and defensible
+              documentation. We help turn investigation and remediation tasks into a managed program with clear deliverables.
+            </p>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.25rem' }}>
+              {[
+                ['Sampling & QA/QC', 'Field coordination and data integrity support.'],
+                ['Program Documentation', 'Audit-ready files, reporting, and decision logs.'],
+                ['Stakeholder Alignment', 'Agencies, consultants, and community coordination.'],
+                ['Implementation Support', 'From findings to scopes, procurement, and delivery.']
+              ].map(([title, sub]) => (
+                <div key={title} style={{
+                  border: '1px solid rgba(121,174,111,0.22)',
+                  borderRadius: '1.25rem',
+                  background: 'rgba(255,255,255,0.62)',
+                  padding: '1.5rem 1.5rem'
+                }}>
+                  <div style={{ fontWeight: 900, color: 'var(--forest)', marginBottom: '0.5rem', letterSpacing: '0.02em' }}>{title}</div>
+                  <div style={{ color: 'rgba(45,90,49,0.72)', lineHeight: 1.65 }}>{sub}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section data-reveal style={{ padding: '0 0 6rem' }}>
+      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.5rem' }}>
+          {[
+            {
+              img: wastewater2Img,
+              title: 'Wastewater systems',
+              sub: 'Planning and coordination for monitoring, treatment, and reporting workflows.'
+            },
+            {
+              img: waterTreatmentPlantImg,
+              title: 'Water treatment plants',
+              sub: 'Support for compliance programs, procurement packages, and operational continuity.'
+            }
+          ].map(({ img, title, sub }) => (
+            <div key={title} style={{
+              position: 'relative',
+              borderRadius: '2rem',
+              overflow: 'hidden',
+              border: '1px solid rgba(121,174,111,0.22)',
+              boxShadow: '0 20px 70px rgba(26,58,29,0.12)',
+              minHeight: 280,
+              backgroundImage: `url(${img})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center'
+            }}>
+              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(26,58,29,0.76) 0%, rgba(26,58,29,0.38) 55%, rgba(26,58,29,0.22) 100%)' }} />
+              <div style={{ position: 'relative', zIndex: 2, padding: '2.25rem 2.25rem' }}>
+                <div style={{ color: 'rgba(159,203,152,0.9)', fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase', fontSize: '0.7rem', marginBottom: '0.85rem' }}>PFAS program delivery</div>
+                <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(1.65rem, 3.6vw, 2.4rem)', color: 'var(--cream)', lineHeight: 1.1, marginBottom: '0.75rem' }}>{title}</h3>
+                <p style={{ color: 'rgba(242,237,194,0.78)', lineHeight: 1.75, fontSize: '1rem', maxWidth: 520 }}>{sub}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="pfas-consultation" data-reveal style={{ padding: '0 0 7rem' }}>
+      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }} className="contact-grid">
+        <div className="contact-details">
+          <h2 style={{
+            fontFamily: "'Playfair Display', serif",
+            fontSize: 'clamp(2.6rem, 6vw, 4.2rem)',
+            fontWeight: 900,
+            color: 'var(--forest)',
+            lineHeight: 1.02,
+            letterSpacing: '-0.02em',
+            marginBottom: '1rem'
+          }}>
+            Start with a
+            {' '}
+            <span style={{ color: 'var(--sage)', fontStyle: 'italic' }}>confidential conversation</span>
+          </h2>
+          <p style={{ fontSize: '1.05rem', color: 'rgba(45,90,49,0.72)', lineHeight: 1.8, marginBottom: '1.25rem' }}>
+            No obligation. We’ll review your PFAS program scope, deadlines, stakeholders, and documentation requirements and recommend a
+            defensible next-step plan.
+          </p>
+          <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center' }}>
+            <span className="badge" style={{ marginBottom: 0, color: 'var(--forest)', borderColor: 'rgba(121,174,111,0.35)', background: 'rgba(121,174,111,0.12)' }}>
+              <span className="badge-dot" style={{ background: 'var(--forest)' }} />
+              Call: (844) 878-7347
+            </span>
+          </div>
+        </div>
+
+        <div className="contact-card">
+          <div style={{
+            background: 'rgba(10,24,12,0.78)',
+            backdropFilter: 'blur(24px)',
+            border: '1px solid rgba(159,203,152,0.22)',
+            borderRadius: '2rem',
+            padding: '2.5rem',
+            boxShadow: '0 28px 78px rgba(0,0,0,0.55)'
+          }}>
+            <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.5rem', color: 'var(--cream)', marginBottom: '0.5rem', fontWeight: 700 }}>Send a Request</h3>
+            <p style={{ fontSize: '0.85rem', color: 'rgba(242,237,194,0.4)', marginBottom: '2rem' }}>We typically respond within 24 hours.</p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+              {[
+                { label: 'Full Name', type: 'text', placeholder: 'Ex: Michael Chen' },
+                { label: 'Institutional Email', type: 'email', placeholder: 'm.chen@municipality.gov' },
+                { label: 'Organization', type: 'text', placeholder: 'City of Philadelphia' },
+              ].map(({ label, type, placeholder }) => (
+                <div key={label}>
+                  <label style={{ display: 'block', fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--mint)', marginBottom: '0.5rem' }}>{label}</label>
+                  <input type={type} placeholder={placeholder} className="form-input" />
+                </div>
+              ))}
+              <div>
+                <label style={{ display: 'block', fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--mint)', marginBottom: '0.5rem' }}>Assistance Required</label>
+                <textarea rows={4} placeholder="Briefly describe your PFAS program needs..." className="form-input" style={{ resize: 'none' }} />
+              </div>
+              <button
+                style={{
+                  width: '100%', padding: '1.1rem',
+                  background: 'linear-gradient(135deg, var(--mint), var(--sage))',
+                  color: 'var(--forest-deep)', border: 'none', borderRadius: '1rem',
+                  fontWeight: 700, fontSize: '0.85rem', letterSpacing: '0.15em',
+                  textTransform: 'uppercase', cursor: 'pointer',
+                  boxShadow: '0 8px 24px rgba(159,203,152,0.3)',
+                  transition: 'transform 0.2s, box-shadow 0.2s',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.6rem'
+                }}
+                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 14px 36px rgba(159,203,152,0.4)'; }}
+                onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 8px 24px rgba(159,203,152,0.3)'; }}
+              >
+                {t.submit}
+                <IconArrowRight size={16} />
+              </button>
+              <div style={{ color: 'rgba(242,237,194,0.55)', fontSize: '0.85rem', lineHeight: 1.6 }}>
+                Submitting this form does not create any obligation. Information provided will be treated as confidential and used solely
+                to determine whether an initial discussion is appropriate.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
 );
 
 const SkeletonHome = () => (
@@ -230,6 +764,21 @@ const GlobalStyles = () => (
       border: 1px solid rgba(255,255,255,0.2);
     }
     .btn-ghost:hover { background: rgba(255,255,255,0.18); }
+
+    :where(a, button, input, textarea):focus-visible {
+      outline: 3px solid rgba(159,203,152,0.55);
+      outline-offset: 3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal { transform: none; }
+    }
 
     /* Scroll reveal */
     .reveal {
@@ -539,6 +1088,25 @@ const GlobalStyles = () => (
       }
     }
 
+    @media (hover: none) {
+      .sector-card-desc {
+        max-height: 120px;
+        opacity: 1;
+      }
+      .sector-card:hover {
+        transform: none;
+      }
+      .sector-card:hover img { transform: none; }
+    }
+
+    @media (max-width: 800px) {
+      .clean-energy-panels { grid-template-columns: 1fr !important; }
+    }
+
+    @media (min-width: 1024px) {
+      .nav-get-started { display: none !important; }
+    }
+
     /* Dot animations */
     .dot-active {
       width: 2rem !important;
@@ -599,7 +1167,7 @@ const GlobalStyles = () => (
       border-radius: 1.5rem;
       overflow: hidden;
       aspect-ratio: 3/4;
-      cursor: pointer;
+      cursor: default;
       transition: transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.35s ease;
       box-shadow: 0 4px 20px rgba(0,0,0,0.15);
     }
@@ -701,7 +1269,7 @@ const GlobalStyles = () => (
 );
 
 // --- NAVBAR ---
-const Navbar = ({ lang, setLang, t, forceSolid = false, activeRoute = '', activeSection = '' }) => {
+const Navbar = ({ t, forceSolid = false, activeRoute = '', activeSection = '' }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -750,6 +1318,15 @@ const Navbar = ({ lang, setLang, t, forceSolid = false, activeRoute = '', active
     return () => window.removeEventListener('keydown', onKeyDown);
   }, []);
 
+  useEffect(() => {
+    const prev = document.body.style.overflow;
+    if (mobileOpen) document.body.style.overflow = 'hidden';
+    else document.body.style.overflow = prev || '';
+    return () => {
+      document.body.style.overflow = prev || '';
+    };
+  }, [mobileOpen]);
+
   return (
     <>
     {mobileOpen && (
@@ -757,14 +1334,12 @@ const Navbar = ({ lang, setLang, t, forceSolid = false, activeRoute = '', active
     )}
     {mobileOpen && (
       <div className="mobile-nav">
-        <div className="mobile-nav-panel">
+        <div className="mobile-nav-panel" id="mobile-nav" role="dialog" aria-label="Mobile navigation">
           <div className="mobile-nav-links">
-            {[['#', t.home], ['#/about', t.about], ['#/services', t.services], ['#/insights', t.insights]].map(([href, label]) => (
+            {[['#', t.home], ['#/clean-energy-vision', t.cleanEnergyVision], ['#/pfas-response-division', 'PFAS Response Division'], ['#/how-we-work', 'How We Work'], ['#/funding-and-accountability', 'Funding & Accountability']].map(([href, label]) => (
               <a key={href} href={href} onClick={closeMobile} className={isActive(href) ? 'mobile-active' : ''}>{label}</a>
             ))}
             <div className="mobile-nav-divider" />
-            <a href="#sectors" onClick={goHomeAndScroll('sectors')} className={isActive('#sectors') ? 'mobile-active' : ''}>{t.sectors}</a>
-            <a href="#pfas-response" onClick={goHomeAndScroll('pfas-response')} className={isActive('#pfas-response') ? 'mobile-active' : ''}>{t.pfas}</a>
             <a href="#contact" onClick={goHomeAndScroll('contact')} className={isActive('#contact') ? 'mobile-active' : ''}>{t.getStarted}</a>
           </div>
         </div>
@@ -819,6 +1394,7 @@ const Navbar = ({ lang, setLang, t, forceSolid = false, activeRoute = '', active
             onClick={() => setMobileOpen(v => !v)}
             aria-label="Toggle navigation"
             aria-expanded={mobileOpen}
+            aria-controls="mobile-nav"
           >
             <span className="nav-toggle-lines" aria-hidden="true">
               <span />
@@ -828,7 +1404,7 @@ const Navbar = ({ lang, setLang, t, forceSolid = false, activeRoute = '', active
           </button>
 
           <div className="navbar-links">
-            {[['#', t.home], ['#/about', t.about], ['#/services', t.services], ['#/insights', t.insights]].map(([href, label]) => (
+            {[['#', t.home], ['#/clean-energy-vision', t.cleanEnergyVision], ['#/pfas-response-division', 'PFAS Response Division'], ['#/how-we-work', 'How We Work'], ['#/funding-and-accountability', 'Funding & Accountability']].map(([href, label]) => (
               <a
                 key={href}
                 href={href}
@@ -839,12 +1415,9 @@ const Navbar = ({ lang, setLang, t, forceSolid = false, activeRoute = '', active
                 {label}
               </a>
             ))}
-            {[['#sectors', t.sectors, goHomeAndScroll('sectors')], ['#pfas-response', t.pfas, goHomeAndScroll('pfas-response')]].map(([href, label, onClick]) => (
-              <a key={href} href={href} onClick={onClick} className={`nav-link ${isActive(href) ? 'nav-link-active' : ''}`} style={{ color: scrolled ? 'var(--forest)' : 'rgba(242,237,194,0.9)', textDecoration: 'none' }}>{label}</a>
-            ))}
           </div>
 
-          <a href="#contact" onClick={goHomeAndScroll('contact')} className="btn" style={{
+          <a href="#contact" onClick={goHomeAndScroll('contact')} className="btn nav-get-started" style={{
             background: 'var(--forest)',
             color: 'var(--cream)',
             padding: '0.65rem 1.75rem',
@@ -860,23 +1433,6 @@ const Navbar = ({ lang, setLang, t, forceSolid = false, activeRoute = '', active
             onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 28px rgba(45,90,49,0.45)'; }}
             onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 4px 20px rgba(45,90,49,0.35)'; }}
           >{t.getStarted}</a>
-
-          <div style={{ display: 'flex', background: scrolled ? 'rgba(45,90,49,0.1)' : 'rgba(255,255,255,0.1)', borderRadius: '999px', padding: '3px' }}>
-            {['en', 'es'].map(l => (
-              <button key={l} onClick={() => setLang(l)} style={{
-                padding: '0.3rem 0.85rem',
-                borderRadius: '999px',
-                fontSize: '0.65rem',
-                fontWeight: 700,
-                letterSpacing: '0.1em',
-                border: 'none',
-                cursor: 'pointer',
-                background: lang === l ? 'var(--forest)' : 'transparent',
-                color: lang === l ? 'var(--cream)' : (scrolled ? 'var(--forest)' : 'rgba(242,237,194,0.7)'),
-                transition: 'all 0.2s'
-              }}>{l.toUpperCase()}</button>
-            ))}
-          </div>
         </div>
       </div>
     </nav>
@@ -902,69 +1458,11 @@ const PageShell = ({ title, children }) => (
   </section>
 );
 
-const AboutPage = () => (
-  <PageShell title="About">
-    <p style={{ fontSize: '1.05rem', color: 'rgba(45,90,49,0.75)', lineHeight: 1.8, marginBottom: '1.25rem' }}>
-      JCrew Environmental coordinates regulatory, financial, and technical execution for complex environmental obligations. We translate uncertainty into a structured program with clear accountability.
-    </p>
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.25rem' }}>
-      {[
-        ['Mission', 'Coordinate defensible environmental response programs.'],
-        ['Approach', 'Integrate stakeholders, data, and compliance into one roadmap.'],
-        ['Focus', 'PFAS response planning, implementation oversight, and reporting.']
-      ].map(([h, p]) => (
-        <div key={h} style={{ border: '1px solid rgba(121,174,111,0.25)', borderRadius: '1.25rem', padding: '1.5rem', background: 'rgba(255,255,255,0.55)' }}>
-          <div style={{ fontWeight: 800, letterSpacing: '0.06em', color: 'var(--forest)', marginBottom: '0.5rem' }}>{h}</div>
-          <div style={{ color: 'rgba(45,90,49,0.7)', lineHeight: 1.7, fontSize: '0.95rem' }}>{p}</div>
-        </div>
-      ))}
-    </div>
-  </PageShell>
-);
-
-const ServicesPage = () => (
-  <PageShell title="Services">
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.25rem' }}>
-      {[
-        ['Program Strategy', 'Define scope, milestones, roles, and governance.'],
-        ['Compliance & Reporting', 'Support regulatory coordination and documentation.'],
-        ['Funding Alignment', 'Connect technical work to available funding mechanisms.'],
-        ['Implementation Oversight', 'Coordinate vendors, schedules, and deliverables.']
-      ].map(([h, p]) => (
-        <div key={h} style={{ border: '1px solid rgba(121,174,111,0.25)', borderRadius: '1.25rem', padding: '1.5rem', background: 'rgba(255,255,255,0.55)' }}>
-          <div style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, color: 'var(--forest)', fontSize: '1.2rem', marginBottom: '0.5rem' }}>{h}</div>
-          <div style={{ color: 'rgba(45,90,49,0.7)', lineHeight: 1.7, fontSize: '0.95rem' }}>{p}</div>
-        </div>
-      ))}
-    </div>
-  </PageShell>
-);
-
-const InsightsPage = () => (
-  <PageShell title="Insights">
-    <p style={{ fontSize: '1.05rem', color: 'rgba(45,90,49,0.75)', lineHeight: 1.8, marginBottom: '1.25rem' }}>
-      This page is a placeholder for resources like PFAS response checklists, project readiness guidance, and reporting templates.
-    </p>
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
-      {[
-        ['PFAS Response Readiness', 'What to assemble before engaging consultants and labs.'],
-        ['Stakeholder Map', 'Who should be involved and what decisions they own.'],
-        ['Program Timeline', 'A practical sequence for assessment, funding, and remediation.']
-      ].map(([h, p]) => (
-        <div key={h} style={{ padding: '1.25rem 1.5rem', borderRadius: '1.25rem', border: '1px solid rgba(121,174,111,0.25)', background: 'rgba(255,255,255,0.55)' }}>
-          <div style={{ fontWeight: 800, color: 'var(--forest)', marginBottom: '0.35rem' }}>{h}</div>
-          <div style={{ color: 'rgba(45,90,49,0.7)', lineHeight: 1.7, fontSize: '0.95rem' }}>{p}</div>
-        </div>
-      ))}
-    </div>
-  </PageShell>
-);
-
 // --- HERO ---
 const Hero = ({ t }) => (
   <header style={{ position: 'relative', minHeight: '100vh', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
     <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
-      <video autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }}>
+      <video autoPlay loop muted playsInline preload="metadata" style={{ width: '100%', height: '100%', objectFit: 'cover' }}>
         <source src={heroVideo} type="video/mp4" />
       </video>
       <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(26,58,29,0.92) 0%, rgba(45,90,49,0.65) 50%, rgba(26,58,29,0.4) 100%)' }} />
@@ -1010,12 +1508,12 @@ const Hero = ({ t }) => (
 // --- SECTORS CAROUSEL ---
 const Sectors = ({ t }) => {
   const sectorData = [
-    { title: "Public Drinking Water", img: drinkingImg, desc: "Compliance and remediation for municipal water systems.", tag: "Water" },
-    { title: "Airports & Aviation", img: airportImg, desc: "AFFF management and soil remediation oversight for aviation.", tag: "Aviation" },
-    { title: "Fire & Emergency", img: fireImg, desc: "Transitioning departments to safe PFAS-free alternatives.", tag: "Safety" },
-    { title: "Energy Infrastructure", img: energyImg, desc: "Sustainable efficiency and clean fuel solutions at scale.", tag: "Energy" },
-    { title: "Municipal Support", img: municipalImg, desc: "Institutional risk management for local government entities.", tag: "Municipal" },
-    { title: "Corporate Business", img: businessImg, desc: "Defensible environmental accountability for enterprise.", tag: "Corporate" }
+    { title: "Rainwater harvesting", img: rainwaterCollectionImg, desc: "Capture and storage planning that reduces runoff impacts and supports resilient site operations.", tag: "Stormwater" },
+    { title: "Efficient irrigation systems", img: irrigation2Img, desc: "Water-efficient irrigation upgrades that reduce demand, optimize distribution, and improve reliability.", tag: "Efficiency" },
+    { title: "Wastewater treatment and reuse", img: wastewaterImg, desc: "Treatment, reuse, and discharge support—built around compliance, monitoring, and practical operations.", tag: "Reuse" },
+    { title: "Protecting rivers and watersheds", img: riverImg, desc: "Watershed protection programs that strengthen monitoring, remediation planning, and community outcomes.", tag: "Watershed" },
+    { title: "Waste segregation systems", img: segregationImg, desc: "Segregation planning and site workflows that improve safety, compliance, and downstream processing.", tag: "Materials" },
+    { title: "Recycling and composting", img: recyclingImg, desc: "Program support that improves diversion performance, reduces contamination, and clarifies reporting.", tag: "Diversion" }
   ];
 
   const [current, setCurrent] = useState(0);
@@ -1082,6 +1580,19 @@ const Sectors = ({ t }) => {
     resetAuto();
   };
 
+  const onCarouselKeyDown = (e) => {
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      goTo(current - 1);
+      resetAuto();
+    }
+    if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      goTo(current + 1);
+      resetAuto();
+    }
+  };
+
   const GAP = 16;
   const slideWidthPct = slidesVisible === 1 ? 88 : slidesVisible === 2 ? 50 : 33.333;
   const translateX = `calc(-${current * (slideWidthPct + (GAP / (containerRef.current?.offsetWidth || 1000)) * 100)}% + ${dragDelta}px)`;
@@ -1106,6 +1617,7 @@ const Sectors = ({ t }) => {
             {[[-1, '←'], [1, '→']].map(([dir, arrow]) => (
               <button key={dir} onClick={() => { goTo(current + dir); resetAuto(); }}
                 disabled={dir === -1 ? current === 0 : current >= maxIndex}
+                aria-label={dir === -1 ? 'Previous' : 'Next'}
                 style={{
                   width: 52, height: 52, borderRadius: '50%',
                   border: '2px solid var(--forest)',
@@ -1123,6 +1635,10 @@ const Sectors = ({ t }) => {
         <div
           ref={containerRef}
           style={{ overflow: 'hidden', cursor: isDragging ? 'grabbing' : 'grab', userSelect: 'none' }}
+          role="region"
+          aria-label="Sectors carousel"
+          tabIndex={0}
+          onKeyDown={onCarouselKeyDown}
           onMouseDown={onPointerDown}
           onMouseMove={onPointerMove}
           onMouseUp={onPointerUp}
@@ -1143,7 +1659,7 @@ const Sectors = ({ t }) => {
             {sectorData.map((s, i) => (
               <div key={i} className="carousel-slide">
                 <div className="sector-card">
-                  <img src={s.img} alt={s.title} draggable={false} />
+                  <img src={s.img} alt={s.title} draggable={false} loading="lazy" decoding="async" />
                   <div className="sector-card-overlay" />
                   <div style={{
                     position: 'absolute', top: '1.25rem', left: '1.25rem',
@@ -1167,6 +1683,7 @@ const Sectors = ({ t }) => {
         <div style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem', marginTop: '2.5rem', alignItems: 'center' }}>
           {Array.from({ length: maxIndex + 1 }).map((_, i) => (
             <button key={i} onClick={() => { goTo(i); resetAuto(); }}
+              aria-label={`Go to slide ${i + 1}`}
               style={{
                 height: 8, width: i === current ? 32 : 8,
                 borderRadius: 4, border: 'none', cursor: 'pointer',
@@ -1238,10 +1755,10 @@ const Strategy = ({ t }) => (
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.25rem' }}>
             {[
-              ['Technical', 'Engineering & Remediation', <IconGear />],
-              ['Financial', 'Funding & Grant Alignment', <IconCoin />],
-              ['Regulatory', 'Compliance & Reporting', <IconClipboard />],
-              ['Legal', 'Defensible Documentation', <IconScale />]
+              ['Technical', 'Investigation & Engineering Oversight', <IconGear />],
+              ['Financial', 'Funding Strategy & Procurement Support', <IconCoin />],
+              ['Regulatory', 'Compliance, Reporting & Public Records', <IconClipboard />],
+              ['Legal', 'Audit-Ready, Defensible Documentation', <IconScale />]
             ].map(([title, sub, icon]) => (
               <div key={title} className="stat-card">
                 <div style={{ marginBottom: '0.6rem', display: 'flex' }}>{icon}</div>
@@ -1278,7 +1795,7 @@ const Contact = ({ t }) => (
           ))}
         </h2>
         <p style={{ fontSize: '1.05rem', color: 'rgba(242,237,194,0.65)', lineHeight: 1.7, fontWeight: 300, maxWidth: '400px', marginBottom: '2.5rem' }}>
-          Coordinating technical, financial, and regulatory pieces into a single, defensible environmental program.
+          Clear scope. Clear documentation. Clear delivery—so your environmental program holds up in the field and on the record.
         </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           {[
@@ -1345,6 +1862,392 @@ const Contact = ({ t }) => (
 );
 
 // --- FOOTER ---
+const HowWeWorkPage = ({ t }) => (
+  <section style={{ background: 'var(--cream)' }}>
+    <header style={{ position: 'relative', minHeight: '88vh', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
+      <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+        <video autoPlay loop muted playsInline preload="metadata" style={{ width: '100%', height: '100%', objectFit: 'cover' }}>
+          <source src={heroHowVideo} type="video/mp4" />
+        </video>
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(0,0,0,0.58) 0%, rgba(0,0,0,0.24) 55%, rgba(0,0,0,0.12) 100%)' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(0,0,0,0.12) 0%, transparent 55%, rgba(0,0,0,0.52) 100%)' }} />
+      </div>
+
+      <div data-reveal style={{ position: 'relative', zIndex: 10, maxWidth: '1280px', margin: '0 auto', padding: '0 2rem', width: '100%', paddingTop: '9rem' }}>
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.75rem', flexWrap: 'wrap', marginBottom: '0.85rem' }}>
+          <div style={{ color: 'rgba(242,237,194,0.72)', fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase', fontSize: '0.75rem' }}>Our</div>
+          <div style={{ color: 'rgba(242,237,194,0.92)', fontWeight: 800, letterSpacing: '0.14em', textTransform: 'uppercase', fontSize: '0.78rem' }}>Approach</div>
+        </div>
+
+        <h1 className="page-title" style={{
+          fontFamily: "'Playfair Display', serif",
+          fontSize: 'clamp(3.2rem, 7.4vw, 6.6rem)',
+          fontWeight: 900,
+          color: 'var(--cream)',
+          lineHeight: 0.95,
+          letterSpacing: '-0.02em',
+          marginBottom: '1.15rem',
+          textShadow: '0 10px 40px rgba(0,0,0,0.35)'
+        }}>
+          How
+          {' '}
+          <span style={{ color: 'var(--mint)', fontStyle: 'italic' }}>We Work</span>
+        </h1>
+
+        <p style={{ fontSize: '1.15rem', color: 'rgba(242,237,194,0.84)', maxWidth: 760, lineHeight: 1.75, fontWeight: 300 }}>
+          JCrew Environmental Solution delivers environmental programs through clear scope, coordinated execution, and
+          defensible documentation—so your infrastructure and compliance work holds up from planning through operations.
+        </p>
+      </div>
+    </header>
+
+    <section data-reveal style={{ padding: '6rem 0 5rem' }}>
+      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }}>
+        <div style={{
+          position: 'relative',
+          borderRadius: '2rem',
+          overflow: 'hidden',
+          border: '1px solid rgba(121,174,111,0.22)',
+          boxShadow: '0 20px 70px rgba(26,58,29,0.12)',
+          background: 'var(--forest-deep)'
+        }}>
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(26,58,29,0.95) 0%, rgba(45,90,49,0.75) 50%, rgba(26,58,29,0.55) 100%)' }} />
+          <div style={{ position: 'relative', zIndex: 2, padding: '3.25rem 3rem' }}>
+            <h2 style={{
+              fontFamily: "'Playfair Display', serif",
+              fontSize: 'clamp(2.25rem, 4.5vw, 3.75rem)',
+              fontWeight: 900,
+              lineHeight: 1.05,
+              color: 'var(--cream)',
+              letterSpacing: '-0.02em',
+              marginBottom: '1.25rem'
+            }}>
+              Four phases of
+              {' '}
+              <span style={{ color: 'var(--mint)', fontStyle: 'italic' }}>program delivery</span>
+            </h2>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.5rem' }}>
+              {[
+                { num: '01', title: 'Discovery & Scoping', desc: 'We clarify goals, constraints, stakeholders, and compliance requirements before any field work begins.' },
+                { num: '02', title: 'Program Design', desc: 'We structure the work into phased deliverables with clear decision points, budgets, and accountability.' },
+                { num: '03', title: 'Execution & Coordination', desc: 'We manage procurement, contractors, reporting, and stakeholder communication throughout delivery.' },
+                { num: '04', title: 'Documentation & Handoff', desc: 'We compile audit-ready records, operational guidance, and continuity plans for long-term success.' }
+              ].map(({ num, title, desc }) => (
+                <div key={num} style={{
+                  border: '1px solid rgba(159,203,152,0.15)',
+                  borderRadius: '1.5rem',
+                  padding: '1.75rem',
+                  background: 'rgba(255,255,255,0.06)',
+                  backdropFilter: 'blur(6px)'
+                }}>
+                  <div style={{ color: 'var(--mint)', fontWeight: 900, fontSize: '0.85rem', letterSpacing: '0.15em', marginBottom: '0.75rem' }}>{num}</div>
+                  <div style={{ color: 'var(--cream)', fontWeight: 700, fontSize: '1.05rem', marginBottom: '0.5rem' }}>{title}</div>
+                  <p style={{ color: 'rgba(242,237,194,0.65)', lineHeight: 1.7, fontSize: '0.95rem' }}>{desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section data-reveal style={{ padding: '0 0 6rem' }}>
+      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>
+          {[
+            ['Technical Oversight', 'Engineering review, QA/QC coordination, and field accountability.'],
+            ['Financial Planning', 'Grant alignment, capital planning, and procurement support.'],
+            ['Regulatory Navigation', 'Permitting, compliance reporting, and public records.'],
+            ['Stakeholder Management', 'Community engagement, agency coordination, and transparency.']
+          ].map(([title, desc]) => (
+            <div key={title} style={{
+              border: '1px solid rgba(121,174,111,0.25)',
+              borderRadius: '1.5rem',
+              padding: '2rem',
+              background: 'rgba(255,255,255,0.55)'
+            }}>
+              <div style={{ color: 'var(--forest)', fontWeight: 800, fontSize: '1.1rem', marginBottom: '0.6rem', letterSpacing: '0.02em' }}>{title}</div>
+              <p style={{ color: 'rgba(45,90,49,0.72)', lineHeight: 1.7 }}>{desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="how-consultation" data-reveal style={{ padding: '0 0 7rem' }}>
+      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }} className="contact-grid">
+        <div className="contact-details">
+          <h2 style={{
+            fontFamily: "'Playfair Display', serif",
+            fontSize: 'clamp(2.6rem, 6vw, 4.2rem)',
+            fontWeight: 900,
+            color: 'var(--forest)',
+            lineHeight: 1.02,
+            letterSpacing: '-0.02em',
+            marginBottom: '1rem'
+          }}>
+            Ready to
+            {' '}
+            <span style={{ color: 'var(--sage)', fontStyle: 'italic' }}>work together?</span>
+          </h2>
+          <p style={{ fontSize: '1.05rem', color: 'rgba(45,90,49,0.72)', lineHeight: 1.8, marginBottom: '1.25rem' }}>
+            Share your program scope, timeline, and constraints. We’ll propose a clear approach and next steps.
+          </p>
+          <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center' }}>
+            <span className="badge" style={{ marginBottom: 0, color: 'var(--forest)', borderColor: 'rgba(121,174,111,0.35)', background: 'rgba(121,174,111,0.12)' }}>
+              <span className="badge-dot" style={{ background: 'var(--forest)' }} />
+              Call: (844) 878-7347
+            </span>
+          </div>
+        </div>
+
+        <div className="contact-card">
+          <div style={{
+            background: 'rgba(10,24,12,0.78)',
+            backdropFilter: 'blur(24px)',
+            border: '1px solid rgba(159,203,152,0.22)',
+            borderRadius: '2rem',
+            padding: '2.5rem',
+            boxShadow: '0 28px 78px rgba(0,0,0,0.55)'
+          }}>
+            <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.5rem', color: 'var(--cream)', marginBottom: '0.5rem', fontWeight: 700 }}>Start a conversation</h3>
+            <p style={{ fontSize: '0.85rem', color: 'rgba(242,237,194,0.4)', marginBottom: '2rem' }}>We typically respond within 24 hours.</p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+              {[
+                { label: 'Full Name', type: 'text', placeholder: 'Ex: Michael Chen' },
+                { label: 'Institutional Email', type: 'email', placeholder: 'm.chen@municipality.gov' },
+                { label: 'Organization', type: 'text', placeholder: 'City of Philadelphia' },
+              ].map(({ label, type, placeholder }) => (
+                <div key={label}>
+                  <label style={{ display: 'block', fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--mint)', marginBottom: '0.5rem' }}>{label}</label>
+                  <input type={type} placeholder={placeholder} className="form-input" />
+                </div>
+              ))}
+              <div>
+                <label style={{ display: 'block', fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--mint)', marginBottom: '0.5rem' }}>Tell us about your program</label>
+                <textarea rows={4} placeholder="Describe your environmental or infrastructure program..." className="form-input" style={{ resize: 'none' }} />
+              </div>
+              <button
+                style={{
+                  width: '100%', padding: '1.1rem',
+                  background: 'linear-gradient(135deg, var(--mint), var(--sage))',
+                  color: 'var(--forest-deep)', border: 'none', borderRadius: '1rem',
+                  fontWeight: 700, fontSize: '0.85rem', letterSpacing: '0.15em',
+                  textTransform: 'uppercase', cursor: 'pointer',
+                  boxShadow: '0 8px 24px rgba(159,203,152,0.3)',
+                  transition: 'transform 0.2s, box-shadow 0.2s',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.6rem'
+                }}
+                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 14px 36px rgba(159,203,152,0.4)'; }}
+                onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 8px 24px rgba(159,203,152,0.3)'; }}
+              >
+                {t.submit}
+                <IconArrowRight size={16} />
+              </button>
+              <div style={{ color: 'rgba(242,237,194,0.55)', fontSize: '0.85rem', lineHeight: 1.6 }}>
+                Submitting this form does not create any obligation. Information provided will be treated as confidential.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+);
+
+const FundingAndAccountabilityPage = ({ t }) => (
+  <section style={{ background: 'var(--cream)' }}>
+    <header style={{ position: 'relative', minHeight: '88vh', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
+      <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+        <video autoPlay loop muted playsInline preload="metadata" style={{ width: '100%', height: '100%', objectFit: 'cover' }}>
+          <source src={heroFundingVideo} type="video/mp4" />
+        </video>
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.26) 55%, rgba(0,0,0,0.14) 100%)' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(0,0,0,0.12) 0%, transparent 55%, rgba(0,0,0,0.48) 100%)' }} />
+      </div>
+
+      <div data-reveal style={{ position: 'relative', zIndex: 10, maxWidth: '1280px', margin: '0 auto', padding: '0 2rem', width: '100%', paddingTop: '9rem' }}>
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.75rem', flexWrap: 'wrap', marginBottom: '0.85rem' }}>
+          <div style={{ color: 'rgba(242,237,194,0.72)', fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase', fontSize: '0.75rem' }}>Financial</div>
+          <div style={{ color: 'rgba(242,237,194,0.92)', fontWeight: 800, letterSpacing: '0.14em', textTransform: 'uppercase', fontSize: '0.78rem' }}>Governance</div>
+        </div>
+
+        <h1 className="page-title" style={{
+          fontFamily: "'Playfair Display', serif",
+          fontSize: 'clamp(3.2rem, 7.4vw, 6.6rem)',
+          fontWeight: 900,
+          color: 'var(--cream)',
+          lineHeight: 0.95,
+          letterSpacing: '-0.02em',
+          marginBottom: '1.15rem',
+          textShadow: '0 10px 40px rgba(0,0,0,0.35)'
+        }}>
+          Funding
+          {' '}
+          <span style={{ color: 'var(--mint)', fontStyle: 'italic' }}>& Accountability</span>
+        </h1>
+
+        <p style={{ fontSize: '1.15rem', color: 'rgba(242,237,194,0.84)', maxWidth: 760, lineHeight: 1.75, fontWeight: 300 }}>
+          JCrew Environmental Solution structures environmental programs with clear financial pathways, grant alignment, and
+          defensible accountability—ensuring every dollar is traceable and every deliverable is verifiable.
+        </p>
+      </div>
+    </header>
+
+    <section data-reveal style={{ padding: '6rem 0 5rem' }}>
+      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }}>
+        <div style={{
+          position: 'relative',
+          borderRadius: '2rem',
+          overflow: 'hidden',
+          border: '1px solid rgba(121,174,111,0.22)',
+          boxShadow: '0 20px 70px rgba(26,58,29,0.12)',
+          background: 'var(--forest-deep)'
+        }}>
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(26,58,29,0.95) 0%, rgba(45,90,49,0.75) 50%, rgba(26,58,29,0.55) 100%)' }} />
+          <div style={{ position: 'relative', zIndex: 2, padding: '3.25rem 3rem' }}>
+            <h2 style={{
+              fontFamily: "'Playfair Display', serif",
+              fontSize: 'clamp(2.25rem, 4.5vw, 3.75rem)',
+              fontWeight: 900,
+              lineHeight: 1.05,
+              color: 'var(--cream)',
+              letterSpacing: '-0.02em',
+              marginBottom: '1.25rem'
+            }}>
+              Financial integrity,
+              {' '}
+              <span style={{ color: 'var(--mint)', fontStyle: 'italic' }}>programmatic accountability</span>
+            </h2>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.5rem' }}>
+              {[
+                { num: '01', title: 'Funding Strategy', desc: 'Grant alignment, capital stack planning, and resource optimization for long-horizon environmental programs.' },
+                { num: '02', title: 'Procurement Support', desc: 'Transparent bidding, contractor qualification, and contract structures that protect public interest.' },
+                { num: '03', title: 'Financial Reporting', desc: 'Clear documentation, milestone tracking, and audit-ready records for every phase of delivery.' },
+                { num: '04', title: 'Risk Management', desc: 'Cost controls, contingency planning, and accountability frameworks that keep programs on track.' }
+              ].map(({ num, title, desc }) => (
+                <div key={num} style={{
+                  border: '1px solid rgba(159,203,152,0.15)',
+                  borderRadius: '1.5rem',
+                  padding: '1.75rem',
+                  background: 'rgba(255,255,255,0.06)',
+                  backdropFilter: 'blur(6px)'
+                }}>
+                  <div style={{ color: 'var(--mint)', fontWeight: 900, fontSize: '0.85rem', letterSpacing: '0.15em', marginBottom: '0.75rem' }}>{num}</div>
+                  <div style={{ color: 'var(--cream)', fontWeight: 700, fontSize: '1.05rem', marginBottom: '0.5rem' }}>{title}</div>
+                  <p style={{ color: 'rgba(242,237,194,0.65)', lineHeight: 1.7, fontSize: '0.95rem' }}>{desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section data-reveal style={{ padding: '0 0 6rem' }}>
+      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>
+          {[
+            ['Grant Writing', 'Federal, state, and foundation funding applications with technical clarity.'],
+            ['Budget Planning', 'Phased allocation, contingency reserves, and cash flow management.'],
+            ['Contract Oversight', 'Scope verification, change order management, and payment authorization.'],
+            ['Audit Readiness', 'Documentation systems, compliance tracking, and transparency protocols.']
+          ].map(([title, desc]) => (
+            <div key={title} style={{
+              border: '1px solid rgba(121,174,111,0.25)',
+              borderRadius: '1.5rem',
+              padding: '2rem',
+              background: 'rgba(255,255,255,0.55)'
+            }}>
+              <div style={{ color: 'var(--forest)', fontWeight: 800, fontSize: '1.1rem', marginBottom: '0.6rem', letterSpacing: '0.02em' }}>{title}</div>
+              <p style={{ color: 'rgba(45,90,49,0.72)', lineHeight: 1.7 }}>{desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="funding-consultation" data-reveal style={{ padding: '0 0 7rem' }}>
+      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }} className="contact-grid">
+        <div className="contact-details">
+          <h2 style={{
+            fontFamily: "'Playfair Display', serif",
+            fontSize: 'clamp(2.6rem, 6vw, 4.2rem)',
+            fontWeight: 900,
+            color: 'var(--forest)',
+            lineHeight: 1.02,
+            letterSpacing: '-0.02em',
+            marginBottom: '1rem'
+          }}>
+            Let's discuss
+            {' '}
+            <span style={{ color: 'var(--sage)', fontStyle: 'italic' }}>your funding strategy</span>
+          </h2>
+          <p style={{ fontSize: '1.05rem', color: 'rgba(45,90,49,0.72)', lineHeight: 1.8, marginBottom: '1.25rem' }}>
+            Share your program scope and budget constraints. We'll propose a funding and accountability framework tailored to your environmental goals.
+          </p>
+          <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center' }}>
+            <span className="badge" style={{ marginBottom: 0, color: 'var(--forest)', borderColor: 'rgba(121,174,111,0.35)', background: 'rgba(121,174,111,0.12)' }}>
+              <span className="badge-dot" style={{ background: 'var(--forest)' }} />
+              Call: (844) 878-7347
+            </span>
+          </div>
+        </div>
+
+        <div className="contact-card">
+          <div style={{
+            background: 'rgba(10,24,12,0.78)',
+            backdropFilter: 'blur(24px)',
+            border: '1px solid rgba(159,203,152,0.22)',
+            borderRadius: '2rem',
+            padding: '2.5rem',
+            boxShadow: '0 28px 78px rgba(0,0,0,0.55)'
+          }}>
+            <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.5rem', color: 'var(--cream)', marginBottom: '0.5rem', fontWeight: 700 }}>Request a consultation</h3>
+            <p style={{ fontSize: '0.85rem', color: 'rgba(242,237,194,0.4)', marginBottom: '2rem' }}>We typically respond within 24 hours.</p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+              {[
+                { label: 'Full Name', type: 'text', placeholder: 'Ex: Michael Chen' },
+                { label: 'Institutional Email', type: 'email', placeholder: 'm.chen@municipality.gov' },
+                { label: 'Organization', type: 'text', placeholder: 'City of Philadelphia' },
+              ].map(({ label, type, placeholder }) => (
+                <div key={label}>
+                  <label style={{ display: 'block', fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--mint)', marginBottom: '0.5rem' }}>{label}</label>
+                  <input type={type} placeholder={placeholder} className="form-input" />
+                </div>
+              ))}
+              <div>
+                <label style={{ display: 'block', fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--mint)', marginBottom: '0.5rem' }}>Funding or Accountability Needs</label>
+                <textarea rows={4} placeholder="Describe your financial planning, grant, or accountability requirements..." className="form-input" style={{ resize: 'none' }} />
+              </div>
+              <button
+                style={{
+                  width: '100%', padding: '1.1rem',
+                  background: 'linear-gradient(135deg, var(--mint), var(--sage))',
+                  color: 'var(--forest-deep)', border: 'none', borderRadius: '1rem',
+                  fontWeight: 700, fontSize: '0.85rem', letterSpacing: '0.15em',
+                  textTransform: 'uppercase', cursor: 'pointer',
+                  boxShadow: '0 8px 24px rgba(159,203,152,0.3)',
+                  transition: 'transform 0.2s, box-shadow 0.2s',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.6rem'
+                }}
+                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 14px 36px rgba(159,203,152,0.4)'; }}
+                onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 8px 24px rgba(159,203,152,0.3)'; }}
+              >
+                {t.submit}
+                <IconArrowRight size={16} />
+              </button>
+              <div style={{ color: 'rgba(242,237,194,0.55)', fontSize: '0.85rem', lineHeight: 1.6 }}>
+                Submitting this form does not create any obligation. Information provided will be treated as confidential.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+);
+
 const Footer = () => (
   <footer style={{ background: 'var(--forest-deep)', borderTop: '1px solid rgba(121,174,111,0.15)', padding: '2.5rem 2rem' }}>
     <div style={{ maxWidth: '1280px', margin: '0 auto', gap: '1rem' }} className="footer-inner">
@@ -1361,8 +2264,7 @@ const Footer = () => (
 
 // --- APP ---
 export default function App() {
-  const [lang, setLang] = useState('en');
-  const t = translations[lang];
+  const t = translations.en;
 
   const [activeSection, setActiveSection] = useState('');
 
@@ -1449,7 +2351,7 @@ export default function App() {
     <>
       <GlobalStyles />
       <div style={{ fontFamily: "'DM Sans', sans-serif" }}>
-        <Navbar lang={lang} setLang={setLang} t={t} forceSolid={route !== ''} activeRoute={route} activeSection={activeSection} />
+        <Navbar t={t} forceSolid={route !== ''} activeRoute={route} activeSection={activeSection} />
         <main>
           <AnimatePresence mode="wait" initial={false}>
             {loading ? (
@@ -1466,9 +2368,10 @@ export default function App() {
                     <Contact t={t} />
                   </>
                 )}
-                {route === '/about' && <AboutPage />}
-                {route === '/services' && <ServicesPage />}
-                {route === '/insights' && <InsightsPage />}
+                {route === '/clean-energy-vision' && <CleanEnergyVisionPage t={t} />}
+                {route === '/pfas-response-division' && <PFASResponseDivisionPage t={t} />}
+                {route === '/how-we-work' && <HowWeWorkPage t={t} />}
+                {route === '/funding-and-accountability' && <FundingAndAccountabilityPage t={t} />}
               </motion.div>
             )}
           </AnimatePresence>
