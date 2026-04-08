@@ -28,16 +28,6 @@ const Hero = ({ t }) => (
     </div>
 
     <div style={{ position: 'relative', zIndex: 10, maxWidth: '1280px', margin: '0 auto', padding: '0 2rem', width: '100%', paddingTop: '8rem' }}>
-      <div className="fade-up-1" style={{
-        display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-        background: 'rgba(159,203,152,0.12)', border: '1px solid rgba(159,203,152,0.25)',
-        borderRadius: '999px', padding: '0.35rem 1rem', marginBottom: '1.75rem'
-      }}>
-        <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--mint)', animation: 'pulse 2s infinite', flexShrink: 0 }} />
-        <span style={{ color: 'var(--mint)', fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase' }}>
-          Environmental Program Management
-        </span>
-      </div>
 
       <h1 className="fade-up-2" style={{
         fontFamily: "'Playfair Display', serif",
