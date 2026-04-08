@@ -353,6 +353,27 @@ const GlobalStyles = () => (
       .nav-get-started { display: none !important; }
     }
 
+    /* ── Service card slide-up (PFAS page) ── */
+    .service-card-slide {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    .service-card-slide.animated {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Stat card slide-up (Strategy section) ── */
+    .stat-card-slide {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.6s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    .stat-card-slide.animated {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     /* ── Panel slide-in (two-panel imagery cards) ── */
     @keyframes panelSlideUp {
       from { opacity: 0; transform: translateY(36px); }

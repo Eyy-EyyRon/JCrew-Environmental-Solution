@@ -57,20 +57,6 @@ const FundingAndAccountabilityPage = ({ t }) => (
       description="JCrew Environmental Solution structures environmental programs with clear financial pathways, grant alignment, and defensible accountability—ensuring every dollar is traceable and every deliverable is verifiable."
     />
 
-    {/* Hero strip */}
-    <div data-reveal style={{ background: 'var(--forest-deep)', borderBottom: '1px solid rgba(159,203,152,0.12)' }}>
-      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '2.5rem 2rem' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '0.5rem' }}>
-          {['Grant Alignment', 'Capital Planning', 'Audit-Ready Records', 'Program Accountability'].map((label, i) => (
-            <div key={label} style={{ padding: '1.25rem 1.5rem', borderRight: i < 3 ? '1px solid rgba(159,203,152,0.1)' : 'none' }}>
-              <div style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--mint)', marginBottom: '0.6rem', animation: 'pulse 2s infinite' }} />
-              <div style={{ color: 'var(--cream)', fontWeight: 600, fontSize: '0.88rem', lineHeight: 1.3 }}>{label}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-
     {/* Four financial phases */}
     <section data-reveal style={{ padding: '7rem 0 5rem' }}>
       <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }}>

@@ -232,7 +232,26 @@ const Sectors = ({ t }) => {
 };
 
 // ── Strategy ───────────────────────────────────────────────────────────────────
-const Strategy = ({ t }) => (
+const Strategy = ({ t }) => {
+  useEffect(() => {
+    const els = Array.from(document.querySelectorAll('.stat-card-slide'));
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          const idx = els.indexOf(el);
+          setTimeout(() => el.classList.add('animated'), idx * 120);
+          io.unobserve(el);
+        });
+      },
+      { threshold: 0.15 }
+    );
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
+  return (
   <section id="pfas-response" data-reveal style={{ padding: '8rem 0', background: 'var(--forest-deep)', position: 'relative', overflow: 'hidden' }}>
     {/* Background puzzle image */}
     <div style={{ position: 'absolute', left: 0, top: '5%', width: '45%', height: '90%', zIndex: 1, opacity: 0.12, pointerEvents: 'none' }}>
@@ -269,7 +288,7 @@ const Strategy = ({ t }) => (
               ['Regulatory', 'Compliance, Reporting & Public Records', <IconClipboard />],
               ['Legal', 'Audit-Ready, Defensible Documentation', <IconScale />]
             ].map(([title, sub, icon]) => (
-              <div key={title} className="stat-card">
+              <div key={title} className="stat-card stat-card-slide">
                 <div style={{ marginBottom: '0.75rem', display: 'flex' }}>{icon}</div>
                 <div style={{ color: 'var(--mint)', fontWeight: 700, fontSize: '0.92rem', marginBottom: '0.3rem' }}>{title}</div>
                 <div style={{ color: 'rgba(242,237,194,0.45)', fontSize: '0.78rem', lineHeight: 1.6 }}>{sub}</div>
@@ -280,7 +299,8 @@ const Strategy = ({ t }) => (
       </div>
     </div>
   </section>
-);
+  );
+};
 
 // ── Contact ────────────────────────────────────────────────────────────────────
 const Contact = ({ t }) => (

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { IconCheck } from '../components/icons';
 import PageHero from '../components/PageHero';
 import ContactForm from '../components/ContactForm';
@@ -24,7 +24,26 @@ const serviceCards = [
   ['Implementation Support', 'From investigation findings to scoped remediation procurement and delivery.'],
 ];
 
-const PFASResponseDivisionPage = ({ t }) => (
+const PFASResponseDivisionPage = ({ t }) => {
+  useEffect(() => {
+    const els = Array.from(document.querySelectorAll('.service-card-slide'));
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          const idx = els.indexOf(el);
+          setTimeout(() => el.classList.add('animated'), idx * 110);
+          io.unobserve(el);
+        });
+      },
+      { threshold: 0.12 }
+    );
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
+  return (
   <section style={{ background: 'var(--cream)' }}>
     <PageHero
       videoSrc={heroPFASVideo}
@@ -69,13 +88,13 @@ const PFASResponseDivisionPage = ({ t }) => (
             {/* Service cards grid */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.15rem', marginBottom: '2rem' }}>
               {serviceCards.map(([title, sub]) => (
-                <div key={title} style={{
+                <div key={title} className="service-card-slide" style={{
                   border: '1px solid rgba(121,174,111,0.22)', borderRadius: '1.5rem',
                   background: 'rgba(255,255,255,0.68)', padding: '1.5rem 1.5rem',
-                  transition: 'transform 0.2s ease, box-shadow 0.2s ease'
+                  transition: 'opacity 0.55s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.2s ease'
                 }}
                   onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 10px 28px rgba(26,58,29,0.1)'; }}
-                  onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = ''; }}
+                  onMouseLeave={e => { e.currentTarget.style.transform = e.currentTarget.classList.contains('animated') ? '' : 'translateY(24px)'; e.currentTarget.style.boxShadow = ''; }}
                 >
                   <div style={{ fontWeight: 900, color: 'var(--forest)', marginBottom: '0.55rem', letterSpacing: '0.01em', fontSize: '0.98rem' }}>{title}</div>
                   <div style={{ color: 'rgba(45,90,49,0.68)', lineHeight: 1.65, fontSize: '0.88rem' }}>{sub}</div>
@@ -177,6 +196,7 @@ const PFASResponseDivisionPage = ({ t }) => (
       </div>
     </section>
   </section>
-);
+  );
+};
 
 export default PFASResponseDivisionPage;
