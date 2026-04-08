@@ -360,29 +360,28 @@ const GlobalStyles = () => (
     }
     .panel-slide-in {
       opacity: 0;
-      animation: panelSlideUp 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+      transform: translateY(36px);
+      transition: opacity 0.7s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94);
     }
-    .reveal-in .panel-slide-in {
-      animation-play-state: running;
-    }
-    [data-reveal]:not(.reveal-in) .panel-slide-in {
-      animation-play-state: paused;
+    .panel-slide-in.animated {
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    /* ── Energy card slide-in (grid cards) ── */
-    @keyframes energyCardIn {
-      from { opacity: 0; transform: translateY(28px) scale(0.97); }
-      to   { opacity: 1; transform: translateY(0) scale(1); }
-    }
+    /* ── Energy card slide-in from left ── */
     .energy-card-slide {
       opacity: 0;
-      animation: energyCardIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+      transform: translateX(-48px);
+      transition: opacity 0.65s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.65s cubic-bezier(0.25,0.46,0.45,0.94);
     }
-    .reveal-in .energy-card-slide {
-      animation-play-state: running;
+    .energy-card-slide.animated {
+      opacity: 1;
+      transform: translateX(0);
     }
-    [data-reveal]:not(.reveal-in) .energy-card-slide {
-      animation-play-state: paused;
+
+    /* ── Energy card image pane — hide on mobile ── */
+    @media (max-width: 640px) {
+      .energy-img-pane { display: none !important; }
     }
 
     /* ── Image-bg text card — mobile full width ── */

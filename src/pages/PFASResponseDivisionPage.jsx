@@ -36,25 +36,6 @@ const PFASResponseDivisionPage = ({ t }) => (
       description="JCrew Environmental Solution supports agencies and facilities with PFAS investigation coordination, program management, and reporting—built to stand up to audits, public records, and long-term operational realities."
     />
 
-    {/* Hero stat strip */}
-    <div data-reveal style={{ background: 'var(--forest-deep)', borderBottom: '1px solid rgba(159,203,152,0.12)' }}>
-      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '2.5rem 2rem' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0.5rem' }}>
-          {[
-            ['Investigation', 'Program Management'],
-            ['Defensible', 'Documentation'],
-            ['Public Records', 'Ready'],
-            ['Multi-Agency', 'Coordination'],
-          ].map(([top, bottom]) => (
-            <div key={top} style={{ padding: '1.25rem 1.5rem', borderRight: '1px solid rgba(159,203,152,0.1)' }}>
-              <div style={{ color: 'var(--mint)', fontWeight: 700, fontSize: '1.05rem', lineHeight: 1.2 }}>{top}</div>
-              <div style={{ color: 'rgba(242,237,194,0.5)', fontSize: '0.82rem', letterSpacing: '0.05em' }}>{bottom}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-
     {/* Main capability card */}
     <section data-reveal style={{ padding: '7rem 0 5rem' }}>
       <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }}>

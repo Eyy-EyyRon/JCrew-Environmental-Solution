@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { IconArrowRight, IconCheck } from '../components/icons';
 import PageHero from '../components/PageHero';
 import ContactForm from '../components/ContactForm';
@@ -26,13 +26,81 @@ const deliverables = [
 ];
 
 const energySources = [
-  { title: 'Biomass & Bio-Power', img: biomassImg },
-  { title: 'Nuclear & Grid Reliability', img: nuclearImg },
-  { title: 'Hydroelectric Systems', img: hydroelectricImg },
-  { title: 'Geothermal Generation', img: geothermalImg },
+  {
+    title: 'Biomass & Bio-Power',
+    tag: 'Waste-to-Energy',
+    img: biomassImg,
+    intro: 'Biomass conversion programs turn agricultural residue, municipal solid waste, and forestry byproducts into reliable baseload power or process heat.',
+    points: [
+      'Feedstock sourcing and long-term supply contracts',
+      'Technology selection across combustion, gasification, and anaerobic digestion',
+      'Permitting, air quality compliance, and community engagement',
+      'Offtake coordination for grid, industrial, or fuel markets',
+    ],
+  },
+  {
+    title: 'Nuclear & Grid Reliability',
+    tag: 'Baseload Power',
+    img: nuclearImg,
+    intro: 'Nuclear energy provides carbon-free, dispatchable baseload power critical to grid reliability as intermittent renewable penetration increases.',
+    points: [
+      'Program support for small modular reactor (SMR) siting and permitting',
+      'Regulatory coordination with NRC and state energy agencies',
+      'Workforce readiness planning and community benefit frameworks',
+      'Integration with long-duration storage and grid stability programs',
+    ],
+  },
+  {
+    title: 'Hydroelectric Systems',
+    tag: 'Water & Power',
+    img: hydroelectricImg,
+    intro: 'Hydroelectric programs—from run-of-river to pumped storage—deliver renewable generation while supporting watershed protection and water management goals.',
+    points: [
+      'FERC licensing support and environmental review coordination',
+      'Fish passage, sediment management, and downstream flow planning',
+      'Pumped storage feasibility and grid integration studies',
+      'Tribal consultation, recreational stakeholder, and public engagement',
+    ],
+  },
+  {
+    title: 'Geothermal Generation',
+    tag: 'Subsurface Energy',
+    img: geothermalImg,
+    intro: 'Geothermal resources offer consistent, low-emission power and direct-use heat. Program success depends on disciplined resource assessment and permitting coordination.',
+    points: [
+      'Resource characterization, well permitting, and drilling oversight',
+      'BLM and state land coordination for western federal resource areas',
+      'Direct-use district heating feasibility and system design support',
+      'Binary cycle and flash plant technology evaluation and procurement',
+    ],
+  },
 ];
 
-const CleanEnergyVisionPage = ({ t }) => (
+const CleanEnergyVisionPage = ({ t }) => {
+  useEffect(() => {
+    const observe = (selector, stagger = 100) => {
+      const els = Array.from(document.querySelectorAll(selector));
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target;
+            const idx = els.indexOf(el);
+            setTimeout(() => el.classList.add('animated'), idx * stagger);
+            io.unobserve(el);
+          });
+        },
+        { threshold: 0.12 }
+      );
+      els.forEach((el) => io.observe(el));
+      return io;
+    };
+    const io1 = observe('.panel-slide-in', 150);
+    const io2 = observe('.energy-card-slide', 100);
+    return () => { io1.disconnect(); io2.disconnect(); };
+  }, []);
+
+  return (
   <section style={{ background: 'var(--cream)' }}>
     <PageHero
       videoSrc={heroEnergyVideo}
@@ -148,43 +216,73 @@ const CleanEnergyVisionPage = ({ t }) => (
       </div>
     </section>
 
-    {/* Energy source grid */}
-    <section data-reveal style={{ padding: '0 0 6rem' }}>
+    {/* Energy source list */}
+    <section data-reveal style={{ padding: '0 0 6rem', background: 'var(--cream)' }}>
       <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }}>
-        <div style={{ marginBottom: '2rem' }}>
-          <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', color: 'var(--forest)', fontWeight: 900, letterSpacing: '-0.02em' }}>
-            Clean energy pathways we support
+        <div style={{ marginBottom: '3rem' }}>
+          <div style={{ color: 'var(--forest-light)', fontWeight: 700, fontSize: '0.7rem', letterSpacing: '0.22em', textTransform: 'uppercase', marginBottom: '0.75rem' }}>Renewable Pathways</div>
+          <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(1.75rem, 3vw, 2.75rem)', color: 'var(--forest)', fontWeight: 900, letterSpacing: '-0.02em' }}>
+            Clean energy pathways{' '}
+            <span style={{ color: 'var(--sage)', fontStyle: 'italic' }}>we support</span>
           </h3>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.15rem' }}>
-          {energySources.map(({ title, img }, i) => (
-            <div key={title} className="energy-card-slide" style={{
-              position: 'relative', borderRadius: '1.75rem', overflow: 'hidden',
-              border: '1px solid rgba(121,174,111,0.2)',
-              boxShadow: '0 16px 50px rgba(26,58,29,0.12)',
-              minHeight: 280,
-              backgroundImage: `url(${img})`, backgroundSize: 'cover', backgroundPosition: 'center',
-              animationDelay: `${i * 100}ms`,
-              transition: 'transform 0.35s ease, box-shadow 0.35s ease',
-            }}
-              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-5px) scale(1.01)'; e.currentTarget.style.boxShadow = '0 28px 70px rgba(26,58,29,0.22)'; }}
-              onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 16px 50px rgba(26,58,29,0.12)'; }}
-            >
-              {/* Very light full-bg overlay — image dominant */}
-              <div style={{ position: 'absolute', inset: 0, background: 'rgba(26,58,29,0.28)' }} />
-              {/* Bottom fade for label readability */}
-              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(26,58,29,0.82) 0%, rgba(26,58,29,0.15) 45%, rgba(26,58,29,0) 70%)' }} />
-              {/* Label bottom-left */}
-              <div style={{ position: 'absolute', left: '1.25rem', right: '1.25rem', bottom: '1.25rem', zIndex: 2 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+          {energySources.map(({ title, tag, img, intro, points }, i) => (
+            <div key={title} className="energy-card-slide" style={{ animationDelay: `${i * 120}ms` }}>
+              <div style={{
+                display: 'flex', borderRadius: '2rem', overflow: 'hidden',
+                border: '1px solid rgba(121,174,111,0.18)',
+                boxShadow: '0 16px 50px rgba(26,58,29,0.1)',
+                minHeight: 240,
+                transition: 'box-shadow 0.3s ease, transform 0.3s ease',
+              }}
+                onMouseEnter={e => { e.currentTarget.style.boxShadow = '0 24px 70px rgba(26,58,29,0.18)'; e.currentTarget.style.transform = 'translateY(-3px)'; }}
+                onMouseLeave={e => { e.currentTarget.style.boxShadow = '0 16px 50px rgba(26,58,29,0.1)'; e.currentTarget.style.transform = ''; }}
+              >
+                {/* Left: image */}
+                <div className="energy-img-pane" style={{
+                  flexShrink: 0, width: '38%', minWidth: 200, position: 'relative',
+                  backgroundImage: `url(${img})`, backgroundSize: 'cover', backgroundPosition: 'center',
+                }}>
+                  <div style={{ position: 'absolute', inset: 0, background: 'rgba(26,58,29,0.22)' }} />
+                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(26,58,29,0) 60%, rgba(242,237,194,0.55) 100%)' }} />
+                  {/* Tag pill on image */}
+                  <div style={{ position: 'absolute', top: '1.25rem', left: '1.25rem' }}>
+                    <div style={{
+                      display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
+                      padding: '0.3rem 0.85rem', borderRadius: '999px',
+                      border: '1px solid rgba(242,237,194,0.22)',
+                      background: 'rgba(26,58,29,0.55)', backdropFilter: 'blur(8px)',
+                      color: 'rgba(242,237,194,0.92)', fontSize: '0.6rem', fontWeight: 800,
+                      letterSpacing: '0.18em', textTransform: 'uppercase',
+                    }}>
+                      <span style={{ width: 5, height: 5, borderRadius: '50%', background: 'var(--mint)', flexShrink: 0 }} />
+                      {tag}
+                    </div>
+                  </div>
+                </div>
+                {/* Right: text */}
                 <div style={{
-                  display: 'inline-flex', alignItems: 'center',
-                  padding: '0.35rem 0.9rem', borderRadius: '999px',
-                  border: '1px solid rgba(242,237,194,0.25)',
-                  background: 'rgba(26,58,29,0.5)',
-                  backdropFilter: 'blur(6px)',
-                  color: 'rgba(242,237,194,0.95)',
-                  fontSize: '0.62rem', fontWeight: 800, letterSpacing: '0.16em', textTransform: 'uppercase'
-                }}>{title}</div>
+                  flex: 1, padding: '2.25rem 2.5rem',
+                  background: 'rgba(255,255,255,0.6)',
+                  display: 'flex', flexDirection: 'column', justifyContent: 'center',
+                }}>
+                  <h4 style={{
+                    fontFamily: "'Playfair Display', serif",
+                    fontSize: 'clamp(1.35rem, 2.2vw, 1.75rem)',
+                    fontWeight: 900, color: 'var(--forest)',
+                    lineHeight: 1.1, letterSpacing: '-0.02em', marginBottom: '0.75rem',
+                  }}>{title}</h4>
+                  <p style={{ fontSize: '0.95rem', color: 'rgba(45,90,49,0.72)', lineHeight: 1.75, marginBottom: '1.25rem', maxWidth: 560 }}>{intro}</p>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                    {points.map(p => (
+                      <div key={p} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.6rem' }}>
+                        <span style={{ width: 5, height: 5, borderRadius: '50%', background: 'var(--sage)', flexShrink: 0, marginTop: '0.55rem' }} />
+                        <span style={{ color: 'rgba(45,90,49,0.7)', fontSize: '0.88rem', lineHeight: 1.65 }}>{p}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           ))}
@@ -257,6 +355,7 @@ const CleanEnergyVisionPage = ({ t }) => (
       </div>
     </section>
   </section>
-);
+  );
+};
 
 export default CleanEnergyVisionPage;
