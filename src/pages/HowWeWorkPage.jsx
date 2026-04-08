@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PageHero from '../components/PageHero';
 import ContactForm from '../components/ContactForm';
 
 import heroHowVideo from '../assets/Hero-How-small.mp4';
+import cityCleanImg from '../assets/were-here-to-keep-your-city-clean.webp';
 
 const phases = [
   { num: '01', title: 'Discovery & Scoping', desc: 'We clarify goals, constraints, stakeholders, and compliance requirements before any field work begins. This phase produces a shared understanding and a written scope that everyone can act from.' },
@@ -41,7 +42,26 @@ const principles = [
   'Programs are structured to be defensible in audits and public records',
 ];
 
-const HowWeWorkPage = ({ t }) => (
+const HowWeWorkPage = ({ t }) => {
+  useEffect(() => {
+    const els = Array.from(document.querySelectorAll('.slide-card'));
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          const idx = els.indexOf(el);
+          setTimeout(() => el.classList.add('slide-in'), idx * 120);
+          io.unobserve(el);
+        });
+      },
+      { threshold: 0.1 }
+    );
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
+  return (
   <section style={{ background: 'var(--cream)' }}>
     <PageHero
       videoSrc={heroHowVideo}
@@ -57,14 +77,17 @@ const HowWeWorkPage = ({ t }) => (
       <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }}>
         <div style={{
           position: 'relative', borderRadius: '2.25rem', overflow: 'hidden',
-          border: '1px solid rgba(159,203,152,0.15)',
+          border: '1px solid rgba(121,174,111,0.2)',
           boxShadow: '0 24px 80px rgba(26,58,29,0.18)',
-          background: 'var(--forest-deep)'
+          backgroundImage: `url(${cityCleanImg})`,
+          backgroundSize: 'cover', backgroundPosition: 'center',
+          minHeight: 520, display: 'flex',
         }}>
-          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(26,58,29,0.97) 0%, rgba(45,90,49,0.78) 50%, rgba(26,58,29,0.55) 100%)' }} />
-          {/* Decorative grid */}
-          <div style={{ position: 'absolute', inset: 0, opacity: 0.04, backgroundImage: 'repeating-linear-gradient(0deg, var(--mint) 0, var(--mint) 1px, transparent 1px, transparent 60px), repeating-linear-gradient(90deg, var(--mint) 0, var(--mint) 1px, transparent 1px, transparent 60px)' }} />
-          <div style={{ position: 'relative', zIndex: 2, padding: '3.5rem 3.25rem' }}>
+          {/* Subtle full-bg overlay — image visible everywhere */}
+          <div style={{ position: 'absolute', inset: 0, background: 'rgba(26,58,29,0.52)' }} />
+          {/* Left-side legibility gradient */}
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(26,58,29,0.68) 0%, rgba(26,58,29,0.22) 55%, rgba(26,58,29,0) 100%)' }} />
+          <div className="card-text-right" style={{ position: 'relative', zIndex: 2, padding: '3.5rem 3.25rem', width: '62%', minWidth: 320 }}>
             <div style={{ color: 'rgba(159,203,152,0.7)', fontWeight: 700, fontSize: '0.7rem', letterSpacing: '0.22em', textTransform: 'uppercase', marginBottom: '0.9rem' }}>
               Program Delivery Framework
             </div>
@@ -185,6 +208,7 @@ const HowWeWorkPage = ({ t }) => (
       </div>
     </section>
   </section>
-);
+  );
+};
 
 export default HowWeWorkPage;

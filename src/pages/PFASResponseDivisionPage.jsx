@@ -26,21 +26,26 @@ const serviceCards = [
 
 const PFASResponseDivisionPage = ({ t }) => {
   useEffect(() => {
-    const els = Array.from(document.querySelectorAll('.service-card-slide'));
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          const el = entry.target;
-          const idx = els.indexOf(el);
-          setTimeout(() => el.classList.add('animated'), idx * 110);
-          io.unobserve(el);
-        });
-      },
-      { threshold: 0.12 }
-    );
-    els.forEach((el) => io.observe(el));
-    return () => io.disconnect();
+    const observe = (selector, stagger = 110) => {
+      const els = Array.from(document.querySelectorAll(selector));
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target;
+            const idx = els.indexOf(el);
+            setTimeout(() => el.classList.add('animated'), idx * stagger);
+            io.unobserve(el);
+          });
+        },
+        { threshold: 0.12 }
+      );
+      els.forEach((el) => io.observe(el));
+      return io;
+    };
+    const io1 = observe('.service-card-slide', 110);
+    const io2 = observe('.panel-slide-in', 150);
+    return () => { io1.disconnect(); io2.disconnect(); };
   }, []);
 
   return (
@@ -60,44 +65,51 @@ const PFASResponseDivisionPage = ({ t }) => {
       <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }}>
         <div style={{
           position: 'relative', borderRadius: '2.25rem', overflow: 'hidden',
-          border: '1px solid rgba(121,174,111,0.18)',
-          boxShadow: '0 24px 80px rgba(26,58,29,0.1)',
+          border: '1px solid rgba(121,174,111,0.2)',
+          boxShadow: '0 24px 80px rgba(26,58,29,0.18)',
           backgroundImage: `url(${riverImg})`,
           backgroundSize: 'cover', backgroundPosition: 'center',
+          minHeight: 520,
+          display: 'flex',
         }}>
-          <div style={{ position: 'absolute', inset: 0, background: 'rgba(242,237,194,0.84)' }} />
-          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(26,58,29,0.16) 0%, rgba(26,58,29,0.05) 60%, transparent 100%)' }} />
-          <div style={{ position: 'relative', zIndex: 2, padding: '3.5rem 3.25rem' }}>
-            <div style={{ color: 'var(--forest-light)', fontWeight: 700, fontSize: '0.7rem', letterSpacing: '0.22em', textTransform: 'uppercase', marginBottom: '0.9rem' }}>
+          {/* Subtle full-bg overlay — image visible everywhere */}
+          <div style={{ position: 'absolute', inset: 0, background: 'rgba(26,58,29,0.48)' }} />
+          {/* Left-side legibility boost, fades right */}
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(26,58,29,0.62) 0%, rgba(26,58,29,0.22) 55%, rgba(26,58,29,0) 100%)' }} />
+
+          {/* Left: text content */}
+          <div className="card-text-right" style={{ position: 'relative', zIndex: 2, padding: '3.5rem 3.25rem', width: '62%', minWidth: 320 }}>
+            <div style={{ color: 'rgba(159,203,152,0.85)', fontWeight: 700, fontSize: '0.7rem', letterSpacing: '0.22em', textTransform: 'uppercase', marginBottom: '0.9rem' }}>
               Compliance-First Program Structure
             </div>
             <h2 style={{
               fontFamily: "'Playfair Display', serif",
               fontSize: 'clamp(2.25rem, 4.5vw, 3.75rem)',
-              fontWeight: 900, lineHeight: 1.05, color: 'var(--forest)',
+              fontWeight: 900, lineHeight: 1.05, color: 'var(--cream)',
               letterSpacing: '-0.02em', marginBottom: '1rem'
             }}>
               Built for compliance{' '}
-              <span style={{ color: 'var(--sage)', fontStyle: 'italic' }}>and public accountability</span>
+              <span style={{ color: 'var(--mint)', fontStyle: 'italic' }}>and public accountability</span>
             </h2>
-            <p style={{ fontSize: '1.05rem', color: 'rgba(45,90,49,0.7)', lineHeight: 1.8, marginBottom: '2rem', maxWidth: 780 }}>
+            <p style={{ fontSize: '1.02rem', color: 'rgba(242,237,194,0.72)', lineHeight: 1.8, marginBottom: '2rem', maxWidth: 620 }}>
               PFAS programs require coordinated sampling strategy, stakeholder communication, procurement discipline, and defensible
               documentation. We help turn investigation and remediation tasks into a managed program with clear deliverables.
             </p>
 
             {/* Service cards grid */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.15rem', marginBottom: '2rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginBottom: '2rem' }}>
               {serviceCards.map(([title, sub]) => (
                 <div key={title} className="service-card-slide" style={{
-                  border: '1px solid rgba(121,174,111,0.22)', borderRadius: '1.5rem',
-                  background: 'rgba(255,255,255,0.68)', padding: '1.5rem 1.5rem',
+                  border: '1px solid rgba(159,203,152,0.2)', borderRadius: '1.5rem',
+                  background: 'rgba(26,58,29,0.45)', backdropFilter: 'blur(8px)',
+                  padding: '1.4rem 1.5rem',
                   transition: 'opacity 0.55s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.2s ease'
                 }}
-                  onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 10px 28px rgba(26,58,29,0.1)'; }}
-                  onMouseLeave={e => { e.currentTarget.style.transform = e.currentTarget.classList.contains('animated') ? '' : 'translateY(24px)'; e.currentTarget.style.boxShadow = ''; }}
+                  onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 10px 28px rgba(0,0,0,0.2)'; e.currentTarget.style.borderColor = 'rgba(159,203,152,0.4)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = ''; e.currentTarget.style.borderColor = 'rgba(159,203,152,0.2)'; }}
                 >
-                  <div style={{ fontWeight: 900, color: 'var(--forest)', marginBottom: '0.55rem', letterSpacing: '0.01em', fontSize: '0.98rem' }}>{title}</div>
-                  <div style={{ color: 'rgba(45,90,49,0.68)', lineHeight: 1.65, fontSize: '0.88rem' }}>{sub}</div>
+                  <div style={{ fontWeight: 800, color: 'var(--cream)', marginBottom: '0.5rem', letterSpacing: '0.01em', fontSize: '0.95rem' }}>{title}</div>
+                  <div style={{ color: 'rgba(242,237,194,0.6)', lineHeight: 1.65, fontSize: '0.85rem' }}>{sub}</div>
                 </div>
               ))}
             </div>
@@ -136,21 +148,26 @@ const PFASResponseDivisionPage = ({ t }) => {
       <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
           {[
-            { img: wastewater2Img, title: 'Wastewater systems', sub: 'Planning and coordination for monitoring, treatment, and reporting workflows.' },
-            { img: waterTreatmentPlantImg, title: 'Water treatment plants', sub: 'Support for compliance programs, procurement packages, and operational continuity.' },
-          ].map(({ img, title, sub }) => (
-            <div key={title} style={{
+            { img: wastewater2Img, title: 'Wastewater systems', sub: 'Planning and coordination for monitoring, treatment, and reporting workflows.', delay: '0ms' },
+            { img: waterTreatmentPlantImg, title: 'Water treatment plants', sub: 'Support for compliance programs, procurement packages, and operational continuity.', delay: '150ms' },
+          ].map(({ img, title, sub, delay }) => (
+            <div key={title} className="panel-slide-in" style={{
               position: 'relative', borderRadius: '2rem', overflow: 'hidden',
               border: '1px solid rgba(121,174,111,0.18)',
               boxShadow: '0 20px 70px rgba(26,58,29,0.12)',
-              minHeight: 300,
-              backgroundImage: `url(${img})`, backgroundSize: 'cover', backgroundPosition: 'center'
+              minHeight: 360,
+              backgroundImage: `url(${img})`, backgroundSize: 'cover', backgroundPosition: 'center',
+              animationDelay: delay,
             }}>
-              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(26,58,29,0.8) 0%, rgba(26,58,29,0.4) 55%, rgba(26,58,29,0.22) 100%)' }} />
-              <div style={{ position: 'relative', zIndex: 2, padding: '2.5rem 2.25rem' }}>
-                <div style={{ color: 'rgba(159,203,152,0.85)', fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase', fontSize: '0.68rem', marginBottom: '0.9rem' }}>PFAS program delivery</div>
-                <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(1.6rem, 3.2vw, 2.2rem)', color: 'var(--cream)', lineHeight: 1.1, marginBottom: '0.75rem' }}>{title}</h3>
-                <p style={{ color: 'rgba(242,237,194,0.72)', lineHeight: 1.75, fontSize: '0.98rem', maxWidth: 480 }}>{sub}</p>
+              {/* Subtle full-bg overlay — image visible everywhere */}
+              <div style={{ position: 'absolute', inset: 0, background: 'rgba(26,58,29,0.4)' }} />
+              {/* Left-side legibility boost */}
+              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(26,58,29,0.58) 0%, rgba(26,58,29,0.18) 55%, rgba(26,58,29,0) 100%)' }} />
+              {/* Text anchored bottom-left */}
+              <div style={{ position: 'absolute', inset: 0, zIndex: 2, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '2.5rem 2.25rem' }}>
+                <div style={{ color: 'rgba(159,203,152,0.9)', fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase', fontSize: '0.65rem', marginBottom: '0.65rem' }}>PFAS program delivery</div>
+                <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(1.5rem, 3vw, 2rem)', color: 'var(--cream)', lineHeight: 1.1, marginBottom: '0.6rem' }}>{title}</h3>
+                <p style={{ color: 'rgba(242,237,194,0.72)', lineHeight: 1.7, fontSize: '0.9rem', maxWidth: 380 }}>{sub}</p>
               </div>
             </div>
           ))}

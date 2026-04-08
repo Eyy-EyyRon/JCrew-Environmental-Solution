@@ -95,8 +95,30 @@ const GlobalStyles = () => (
 
     /* ── Navbar ── */
     .navbar-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-    .navbar-links { display: flex; align-items: center; gap: 2.5rem; flex-wrap: wrap; }
-    .navbar-actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .navbar-actions { display: flex; align-items: center; gap: 1rem; }
+
+    /* Pill group that wraps all desktop nav links */
+    .navbar-links-pill {
+      display: flex; align-items: center; gap: 0.25rem;
+      background: rgba(255,255,255,0.09);
+      border: 1px solid rgba(255,255,255,0.14);
+      backdropFilter: blur(12px);
+      border-radius: 999px;
+      padding: 0.35rem 0.45rem;
+      transition: background 0.4s, border-color 0.4s;
+    }
+
+    /* Scrolled state — adapt pill to light cream navbar background */
+    .navbar-links-pill[data-scrolled="true"] {
+      background: rgba(45,90,49,0.08);
+      border-color: rgba(121,174,111,0.22);
+    }
+    .navbar-links-pill[data-scrolled="true"] .nav-link:hover { background: rgba(45,90,49,0.1); }
+    .navbar-links-pill[data-scrolled="true"] .nav-link-active {
+      background: var(--forest) !important;
+      color: var(--cream) !important;
+      box-shadow: 0 2px 10px rgba(26,58,29,0.2);
+    }
 
     .nav-toggle {
       display: none; width: 44px; height: 44px; border-radius: 999px;
@@ -165,17 +187,18 @@ const GlobalStyles = () => (
 
     /* ── Nav links ── */
     .nav-link {
-      position: relative; font-size: 0.7rem; font-weight: 600;
-      letter-spacing: 0.18em; text-transform: uppercase; transition: color 0.25s;
+      position: relative; font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      padding: 0.45rem 0.9rem; border-radius: 999px;
+      transition: background 0.2s, color 0.2s;
+      white-space: nowrap;
     }
-    .nav-link::after {
-      content: ''; position: absolute; bottom: -3px; left: 0;
-      width: 0; height: 2px; background: var(--sage); border-radius: 2px;
-      transition: width 0.3s ease;
+    .nav-link:hover { background: rgba(255,255,255,0.1); }
+    .nav-link-active {
+      background: rgba(255,255,255,0.18) !important;
+      color: white !important;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.12);
     }
-    .nav-link:hover::after { width: 100%; }
-    .nav-link-active { color: var(--forest) !important; }
-    .nav-link-active::after { width: 100% !important; }
 
     /* ── Form inputs ── */
     .form-input {
@@ -310,7 +333,8 @@ const GlobalStyles = () => (
 
     /* ── Responsive ── */
     @media (max-width: 1024px) {
-      .navbar-links { gap: 1.5rem; }
+      .navbar-links-pill { gap: 0; }
+      .nav-link { padding: 0.4rem 0.7rem; font-size: 0.65rem; }
       .section-split { gap: 3rem; }
       .contact-grid { gap: 2.5rem; }
       .carousel-slide { flex: 0 0 calc(50% - 1rem); min-width: calc(50% - 1rem); }
@@ -320,7 +344,7 @@ const GlobalStyles = () => (
       nav { padding: 0.9rem 0; }
       .mobile-nav { top: 88px; }
       .page-title { font-size: clamp(2.25rem, 9vw, 3.4rem) !important; }
-      .navbar-links { display: none; }
+      .navbar-links-pill { display: none; }
       .navbar-actions { width: auto; justify-content: flex-end; }
       .nav-toggle { display: inline-flex; }
       .mobile-nav { display: block; }

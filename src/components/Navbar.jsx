@@ -88,24 +88,31 @@ const Navbar = ({ t, forceSolid = false, activeRoute = '', activeSection = '' })
       }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }} className="navbar-inner">
           {/* Logo */}
-          <a href="#" style={{ display: 'flex', alignItems: 'center', gap: '1rem', textDecoration: 'none' }}>
-            <div style={{ width: basePixelSize, height: basePixelSize, flexShrink: 0 }}>
+          <a href="#" style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', textDecoration: 'none', flexShrink: 0 }}>
+            <div style={{
+              width: basePixelSize, height: basePixelSize, flexShrink: 0,
+              borderRadius: '10px',
+              padding: '3px',
+              background: scrolled ? 'transparent' : 'rgba(255,255,255,0.08)',
+              transition: 'background 0.3s',
+            }}>
               <img src="/logo.png" alt="JCrew Environmental Logo" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'left' }}>
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
               <div style={{
                 fontSize: `${textTitleSize}rem`,
                 fontFamily: "'Playfair Display', serif",
-                fontWeight: 700, lineHeight: 1,
+                fontWeight: 800, lineHeight: 1,
                 color: scrolled ? 'var(--forest-deep)' : 'white',
-                transition: 'color 0.3s'
+                transition: 'color 0.3s',
+                letterSpacing: '-0.01em',
               }}>JCrew</div>
               <div style={{
                 fontSize: `${textSubSize}rem`,
-                textTransform: 'uppercase', letterSpacing: '0.35em',
-                fontWeight: 600, marginTop: '2px',
-                color: scrolled ? 'var(--forest-light)' : 'rgba(159,203,152,0.9)',
-                transition: 'color 0.3s'
+                textTransform: 'uppercase', letterSpacing: '0.3em',
+                fontWeight: 700, marginTop: '3px',
+                color: scrolled ? 'var(--sage)' : 'rgba(159,203,152,0.85)',
+                transition: 'color 0.3s',
               }}>Environmental</div>
             </div>
           </a>
@@ -125,15 +132,15 @@ const Navbar = ({ t, forceSolid = false, activeRoute = '', activeSection = '' })
               </span>
             </button>
 
-            {/* Desktop links */}
-            <div className="navbar-links">
+            {/* Desktop links — grouped in a pill container */}
+            <div className="navbar-links-pill" data-scrolled={scrolled ? 'true' : 'false'}>
               {navLinks.map(([href, label]) => (
                 <a
                   key={href}
                   href={href}
                   onClick={closeMobile}
                   className={`nav-link ${isActive(href) ? 'nav-link-active' : ''}`}
-                  style={{ color: scrolled ? 'var(--forest)' : 'rgba(242,237,194,0.9)', textDecoration: 'none' }}
+                  style={{ color: scrolled ? 'var(--forest)' : 'rgba(242,237,194,0.85)', textDecoration: 'none' }}
                 >
                   {label}
                 </a>
@@ -146,18 +153,19 @@ const Navbar = ({ t, forceSolid = false, activeRoute = '', activeSection = '' })
               onClick={goHomeAndScroll('contact')}
               className="btn nav-get-started"
               style={{
-                background: scrolled ? 'var(--forest)' : 'rgba(255,255,255,0.15)',
-                backdropFilter: scrolled ? 'none' : 'blur(8px)',
-                color: scrolled ? 'var(--cream)' : 'var(--cream)',
-                border: scrolled ? 'none' : '1px solid rgba(255,255,255,0.25)',
-                padding: '0.65rem 1.75rem', borderRadius: '999px',
-                fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.15em',
+                background: scrolled ? 'var(--forest)' : 'rgba(255,255,255,0.12)',
+                backdropFilter: 'blur(10px)',
+                color: 'var(--cream)',
+                border: scrolled ? '1.5px solid var(--forest)' : '1px solid rgba(255,255,255,0.22)',
+                padding: '0.6rem 1.5rem', borderRadius: '999px',
+                fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.16em',
                 textTransform: 'uppercase', textDecoration: 'none',
-                boxShadow: scrolled ? '0 4px 20px rgba(45,90,49,0.35)' : 'none',
+                boxShadow: scrolled ? '0 4px 16px rgba(45,90,49,0.25)' : 'none',
                 transition: 'all 0.25s',
+                whiteSpace: 'nowrap',
               }}
-              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; }}
-              onMouseLeave={e => { e.currentTarget.style.transform = ''; }}
+              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(45,90,49,0.3)'; }}
+              onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = scrolled ? '0 4px 16px rgba(45,90,49,0.25)' : 'none'; }}
             >{t.getStarted}</a>
           </div>
         </div>

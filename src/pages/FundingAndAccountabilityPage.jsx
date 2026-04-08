@@ -4,6 +4,7 @@ import PageHero from '../components/PageHero';
 import ContactForm from '../components/ContactForm';
 
 import heroFundingVideo from '../assets/Hero-Funding-small.mp4';
+import colleaguesImg from '../assets/business-colleagues-discussing-project-in-office.webp';
 
 const fundingPhases = [
   { num: '01', title: 'Funding Strategy', desc: 'Grant alignment, capital stack planning, and resource optimization for long-horizon environmental programs. We identify funding sources, eligibility requirements, and sequencing.' },
@@ -81,13 +82,17 @@ const FundingAndAccountabilityPage = ({ t }) => {
       <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }}>
         <div style={{
           position: 'relative', borderRadius: '2.25rem', overflow: 'hidden',
-          border: '1px solid rgba(159,203,152,0.15)',
+          border: '1px solid rgba(121,174,111,0.2)',
           boxShadow: '0 24px 80px rgba(26,58,29,0.18)',
-          background: 'var(--forest-deep)'
+          backgroundImage: `url(${colleaguesImg})`,
+          backgroundSize: 'cover', backgroundPosition: 'center',
+          minHeight: 520, display: 'flex',
         }}>
-          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(26,58,29,0.97) 0%, rgba(45,90,49,0.78) 50%, rgba(26,58,29,0.55) 100%)' }} />
-          <div style={{ position: 'absolute', top: 0, right: 0, width: '40%', height: '100%', background: 'radial-gradient(ellipse at top right, rgba(121,174,111,0.08) 0%, transparent 60%)', pointerEvents: 'none' }} />
-          <div style={{ position: 'relative', zIndex: 2, padding: '3.5rem 3.25rem' }}>
+          {/* Subtle full-bg overlay — image visible everywhere */}
+          <div style={{ position: 'absolute', inset: 0, background: 'rgba(26,58,29,0.52)' }} />
+          {/* Left-side legibility gradient */}
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(26,58,29,0.68) 0%, rgba(26,58,29,0.25) 55%, rgba(26,58,29,0) 100%)' }} />
+          <div className="card-text-right" style={{ position: 'relative', zIndex: 2, padding: '3.5rem 3.25rem', width: '62%', minWidth: 320 }}>
             <div style={{ color: 'rgba(159,203,152,0.7)', fontWeight: 700, fontSize: '0.7rem', letterSpacing: '0.22em', textTransform: 'uppercase', marginBottom: '0.9rem' }}>
               Financial Program Structure
             </div>
