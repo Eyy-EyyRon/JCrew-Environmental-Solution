@@ -212,23 +212,24 @@ const GlobalStyles = () => (
     .sector-card {
       position: relative; border-radius: 1.5rem; overflow: hidden;
       aspect-ratio: 3/4; cursor: default;
-      transition: transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.35s ease;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.4s ease;
+      box-shadow: 0 8px 32px rgba(26,58,29,0.18);
+      border: 1px solid rgba(121,174,111,0.12);
     }
-    .sector-card:hover { transform: translateY(-6px) scale(1.015); box-shadow: 0 20px 60px rgba(45,90,49,0.35); }
-    .sector-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; }
-    .sector-card:hover img { transform: scale(1.08); }
+    .sector-card:hover { transform: translateY(-8px) scale(1.016); box-shadow: 0 28px 70px rgba(45,90,49,0.38); border-color: rgba(121,174,111,0.3); }
+    .sector-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
+    .sector-card:hover img { transform: scale(1.1); }
     .sector-card-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(26,58,29,0.97) 0%, rgba(26,58,29,0.4) 55%, transparent 100%);
-      transition: opacity 0.35s;
+      background: linear-gradient(to top, rgba(26,58,29,0.98) 0%, rgba(26,58,29,0.55) 50%, rgba(26,58,29,0.1) 75%, transparent 100%);
+      transition: opacity 0.4s;
     }
-    .sector-card-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem 1.5rem; }
+    .sector-card-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.75rem 1.5rem; }
     .sector-card-desc {
       max-height: 0; overflow: hidden;
-      transition: max-height 0.4s ease, opacity 0.4s ease; opacity: 0;
+      transition: max-height 0.45s ease, opacity 0.45s ease; opacity: 0;
     }
-    .sector-card:hover .sector-card-desc { max-height: 80px; opacity: 1; }
+    .sector-card:hover .sector-card-desc { max-height: 90px; opacity: 1; }
 
     /* ── Stat cards ── */
     .stat-card {

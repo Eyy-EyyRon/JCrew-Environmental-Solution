@@ -142,12 +142,23 @@ const Sectors = ({ t }) => {
   const translateX = `calc(-${current * (slideWidthPct + (GAP / (containerRef.current?.offsetWidth || 1000)) * 100)}% + ${dragDelta}px)`;
 
   return (
-    <section id="sectors" data-reveal style={{ padding: '8rem 0 7rem', background: 'var(--cream)', overflow: 'hidden' }}>
-      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }}>
+    <section id="sectors" data-reveal style={{ padding: '8rem 0 7rem', background: 'var(--cream)', overflow: 'hidden', position: 'relative' }}>
+      {/* Decorative large background text */}
+      <div aria-hidden style={{
+        position: 'absolute', top: '3rem', right: '-1rem', fontFamily: "'Playfair Display', serif",
+        fontSize: 'clamp(8rem, 18vw, 18rem)', fontWeight: 900, lineHeight: 1,
+        color: 'rgba(45,90,49,0.04)', letterSpacing: '-0.05em', userSelect: 'none', pointerEvents: 'none',
+        zIndex: 0,
+      }}>Sectors</div>
+
+      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem', position: 'relative', zIndex: 1 }}>
         <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '4rem', flexWrap: 'wrap', gap: '1.5rem' }}>
           <div>
-            <div style={{ color: 'var(--forest-light)', fontWeight: 700, fontSize: '0.7rem', letterSpacing: '0.22em', textTransform: 'uppercase', marginBottom: '0.9rem' }}>
-              Our Service Areas
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.9rem' }}>
+              <div style={{ width: 28, height: 2, background: 'var(--sage)', borderRadius: 2 }} />
+              <div style={{ color: 'var(--forest-light)', fontWeight: 700, fontSize: '0.7rem', letterSpacing: '0.22em', textTransform: 'uppercase' }}>
+                Our Service Areas
+              </div>
             </div>
             <h2 style={{
               fontFamily: "'Playfair Display', serif",
@@ -160,23 +171,31 @@ const Sectors = ({ t }) => {
             </h2>
             <p style={{ marginTop: '1rem', fontSize: '1.05rem', color: 'rgba(45,90,49,0.62)', maxWidth: '500px', lineHeight: 1.65 }}>{t.sectorsSub}</p>
           </div>
-          <div style={{ display: 'flex', gap: '0.6rem', alignSelf: 'flex-end' }}>
-            {[[-1, '←', 'Previous'], [1, '→', 'Next']].map(([dir, arrow, label]) => (
-              <button key={dir} onClick={() => { goTo(current + dir); resetAuto(); }}
-                disabled={dir === -1 ? current === 0 : current >= maxIndex}
-                aria-label={label}
-                style={{
-                  width: 50, height: 50, borderRadius: '50%',
-                  border: '2px solid var(--forest)',
-                  background: (dir === 1 && current < maxIndex) ? 'var(--forest)' : 'transparent',
-                  color: (dir === 1 && current < maxIndex) ? 'var(--cream)' : 'var(--forest)',
-                  fontSize: '1.15rem', cursor: 'pointer',
-                  opacity: (dir === -1 && current === 0) || (dir === 1 && current >= maxIndex) ? 0.25 : 1,
-                  transition: 'all 0.25s ease',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center'
-                }}
-              >{arrow}</button>
-            ))}
+
+          {/* Enhanced nav controls with counter */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', alignSelf: 'flex-end' }}>
+            <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'rgba(45,90,49,0.5)', letterSpacing: '0.08em', minWidth: 52, textAlign: 'center' }}>
+              <span style={{ color: 'var(--forest)', fontSize: '1rem' }}>{String(current + 1).padStart(2, '0')}</span>
+              {' / '}{String(maxIndex + 1).padStart(2, '0')}
+            </div>
+            <div style={{ display: 'flex', gap: '0.5rem' }}>
+              {[[-1, '←', 'Previous'], [1, '→', 'Next']].map(([dir, arrow, label]) => (
+                <button key={dir} onClick={() => { goTo(current + dir); resetAuto(); }}
+                  disabled={dir === -1 ? current === 0 : current >= maxIndex}
+                  aria-label={label}
+                  style={{
+                    width: 46, height: 46, borderRadius: '50%',
+                    border: '1.5px solid var(--forest)',
+                    background: (dir === 1 && current < maxIndex) ? 'var(--forest)' : 'transparent',
+                    color: (dir === 1 && current < maxIndex) ? 'var(--cream)' : 'var(--forest)',
+                    fontSize: '1rem', cursor: 'pointer',
+                    opacity: (dir === -1 && current === 0) || (dir === 1 && current >= maxIndex) ? 0.22 : 1,
+                    transition: 'all 0.25s ease',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  }}
+                >{arrow}</button>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -194,18 +213,38 @@ const Sectors = ({ t }) => {
                 <div className="sector-card">
                   <img src={s.img} alt={s.title} draggable={false} loading="lazy" decoding="async" />
                   <div className="sector-card-overlay" />
-                  <div style={{
-                    position: 'absolute', top: '1.25rem', left: '1.25rem',
-                    background: 'rgba(242,237,194,0.15)', backdropFilter: 'blur(8px)',
-                    border: '1px solid rgba(242,237,194,0.2)',
-                    color: 'var(--cream)', fontSize: '0.58rem', fontWeight: 700,
-                    letterSpacing: '0.22em', textTransform: 'uppercase',
-                    padding: '0.28rem 0.75rem', borderRadius: '999px'
-                  }}>{s.tag}</div>
+
+                  {/* Top row: tag pill left, index number right */}
+                  <div style={{ position: 'absolute', top: '1.25rem', left: '1.25rem', right: '1.25rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div style={{
+                      display: 'inline-flex', alignItems: 'center', gap: '0.45rem',
+                      background: 'rgba(26,58,29,0.55)', backdropFilter: 'blur(10px)',
+                      border: '1px solid rgba(159,203,152,0.25)',
+                      color: 'rgba(242,237,194,0.92)', fontSize: '0.58rem', fontWeight: 800,
+                      letterSpacing: '0.2em', textTransform: 'uppercase',
+                      padding: '0.32rem 0.8rem', borderRadius: '999px'
+                    }}>
+                      <span style={{ width: 5, height: 5, borderRadius: '50%', background: 'var(--mint)', flexShrink: 0 }} />
+                      {s.tag}
+                    </div>
+                    <div style={{
+                      fontFamily: "'Playfair Display', serif",
+                      color: 'rgba(242,237,194,0.35)', fontSize: '0.78rem', fontWeight: 900,
+                      letterSpacing: '0.04em'
+                    }}>0{i + 1}</div>
+                  </div>
+
+                  {/* Bottom content */}
                   <div className="sector-card-content">
-                    <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.35rem', fontWeight: 700, color: 'var(--cream)', marginBottom: '0.5rem', lineHeight: 1.2 }}>{s.title}</h3>
-                    <div className="sector-card-desc">
-                      <p style={{ fontSize: '0.85rem', color: 'var(--mint)', lineHeight: 1.6 }}>{s.desc}</p>
+                    {/* Thin mint accent line */}
+                    <div style={{ height: 2, width: 32, background: 'var(--mint)', borderRadius: 2, marginBottom: '0.75rem', opacity: 0.7 }} />
+                    <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.4rem', fontWeight: 800, color: 'var(--cream)', marginBottom: '0.6rem', lineHeight: 1.15 }}>{s.title}</h3>
+                    {/* Always-visible preview line */}
+                    <p style={{ fontSize: '0.82rem', color: 'rgba(242,237,194,0.55)', lineHeight: 1.6, marginBottom: 0,
+                      display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden'
+                    }}>{s.desc}</p>
+                    <div className="sector-card-desc" style={{ marginTop: '0.5rem' }}>
+                      <p style={{ fontSize: '0.82rem', color: 'var(--mint)', lineHeight: 1.6 }}>{s.desc}</p>
                     </div>
                   </div>
                 </div>
