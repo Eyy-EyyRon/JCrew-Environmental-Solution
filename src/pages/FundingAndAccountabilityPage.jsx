@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { IconCheck } from '../components/icons';
 import PageHero from '../components/PageHero';
 import ContactForm from '../components/ContactForm';
@@ -46,7 +46,26 @@ const fundingSources = [
   'Foundation & Impact Funding',
 ];
 
-const FundingAndAccountabilityPage = ({ t }) => (
+const FundingAndAccountabilityPage = ({ t }) => {
+  useEffect(() => {
+    const els = Array.from(document.querySelectorAll('.slide-card'));
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          const idx = els.indexOf(el);
+          setTimeout(() => el.classList.add('slide-in'), idx * 120);
+          io.unobserve(el);
+        });
+      },
+      { threshold: 0.1 }
+    );
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
+  return (
   <section style={{ background: 'var(--cream)' }}>
     <PageHero
       videoSrc={heroFundingVideo}
@@ -236,6 +255,7 @@ const FundingAndAccountabilityPage = ({ t }) => (
       </div>
     </section>
   </section>
-);
+  );
+};
 
 export default FundingAndAccountabilityPage;
