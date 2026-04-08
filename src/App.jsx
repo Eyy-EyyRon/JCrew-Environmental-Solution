@@ -459,19 +459,14 @@ const PFASResponseDivisionPage = ({ t }) => (
               PFAS programs require coordinated sampling strategy, stakeholder communication, procurement discipline, and defensible
               documentation. We help turn investigation and remediation tasks into a managed program with clear deliverables.
             </p>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.25rem' }}>
+            <div className="slide-card-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.25rem' }}>
               {[
                 ['Sampling & QA/QC', 'Field coordination and data integrity support.'],
                 ['Program Documentation', 'Audit-ready files, reporting, and decision logs.'],
                 ['Stakeholder Alignment', 'Agencies, consultants, and community coordination.'],
                 ['Implementation Support', 'From findings to scopes, procurement, and delivery.']
               ].map(([title, sub]) => (
-                <div key={title} style={{
-                  border: '1px solid rgba(121,174,111,0.22)',
-                  borderRadius: '1.25rem',
-                  background: 'rgba(255,255,255,0.62)',
-                  padding: '1.5rem 1.5rem'
-                }}>
+                <div key={title} className="slide-card slide-card-alt">
                   <div style={{ fontWeight: 900, color: 'var(--forest)', marginBottom: '0.5rem', letterSpacing: '0.02em' }}>{title}</div>
                   <div style={{ color: 'rgba(45,90,49,0.72)', lineHeight: 1.65 }}>{sub}</div>
                 </div>
@@ -1152,6 +1147,13 @@ const GlobalStyles = () => (
       border-radius: 1.5rem;
       padding: 2rem;
       background: rgba(255,255,255,0.55);
+    }
+
+    .slide-card-alt {
+      border: 1px solid rgba(121,174,111,0.22);
+      border-radius: 1.25rem;
+      background: rgba(255,255,255,0.62);
+      padding: 1.5rem;
     }
 
     /* Stagger delays for cascading effect */
@@ -2161,20 +2163,14 @@ const FundingAndAccountabilityPage = ({ t }) => (
               {' '}
               <span style={{ color: 'var(--mint)', fontStyle: 'italic' }}>programmatic accountability</span>
             </h2>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.5rem' }}>
+            <div className="slide-card-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.5rem' }}>
               {[
                 { num: '01', title: 'Funding Strategy', desc: 'Grant alignment, capital stack planning, and resource optimization for long-horizon environmental programs.' },
                 { num: '02', title: 'Procurement Support', desc: 'Transparent bidding, contractor qualification, and contract structures that protect public interest.' },
                 { num: '03', title: 'Financial Reporting', desc: 'Clear documentation, milestone tracking, and audit-ready records for every phase of delivery.' },
                 { num: '04', title: 'Risk Management', desc: 'Cost controls, contingency planning, and accountability frameworks that keep programs on track.' }
               ].map(({ num, title, desc }) => (
-                <div key={num} style={{
-                  border: '1px solid rgba(159,203,152,0.15)',
-                  borderRadius: '1.5rem',
-                  padding: '1.75rem',
-                  background: 'rgba(255,255,255,0.06)',
-                  backdropFilter: 'blur(6px)'
-                }}>
+                <div key={num} className="slide-card slide-card-dark">
                   <div style={{ color: 'var(--mint)', fontWeight: 900, fontSize: '0.85rem', letterSpacing: '0.15em', marginBottom: '0.75rem' }}>{num}</div>
                   <div style={{ color: 'var(--cream)', fontWeight: 700, fontSize: '1.05rem', marginBottom: '0.5rem' }}>{title}</div>
                   <p style={{ color: 'rgba(242,237,194,0.65)', lineHeight: 1.7, fontSize: '0.95rem' }}>{desc}</p>
@@ -2188,19 +2184,14 @@ const FundingAndAccountabilityPage = ({ t }) => (
 
     <section data-reveal style={{ padding: '0 0 6rem' }}>
       <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>
+        <div className="slide-card-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>
           {[
             ['Grant Writing', 'Federal, state, and foundation funding applications with technical clarity.'],
             ['Budget Planning', 'Phased allocation, contingency reserves, and cash flow management.'],
             ['Contract Oversight', 'Scope verification, change order management, and payment authorization.'],
             ['Audit Readiness', 'Documentation systems, compliance tracking, and transparency protocols.']
           ].map(([title, desc]) => (
-            <div key={title} style={{
-              border: '1px solid rgba(121,174,111,0.25)',
-              borderRadius: '1.5rem',
-              padding: '2rem',
-              background: 'rgba(255,255,255,0.55)'
-            }}>
+            <div key={title} className="slide-card slide-card-light">
               <div style={{ color: 'var(--forest)', fontWeight: 800, fontSize: '1.1rem', marginBottom: '0.6rem', letterSpacing: '0.02em' }}>{title}</div>
               <p style={{ color: 'rgba(45,90,49,0.72)', lineHeight: 1.7 }}>{desc}</p>
             </div>
