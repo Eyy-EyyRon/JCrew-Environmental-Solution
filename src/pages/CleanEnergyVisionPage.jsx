@@ -111,26 +111,46 @@ const CleanEnergyVisionPage = ({ t }) => {
       description="The Clean Energy Division of JCrew Environmental Solution designs and coordinates waste-to-clean-energy programs that reduce landfill dependence, stabilize operating costs, and deliver measurable emissions reduction through clean fuels and electrification pathways."
     />
 
-    {/* Main content card */}
+    {/* Main content — split layout */}
     <section data-reveal style={{ padding: '7rem 0 5rem' }}>
       <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }}>
-        <div style={{
-          position: 'relative', borderRadius: '2.25rem', overflow: 'hidden',
-          border: '1px solid rgba(121,174,111,0.2)',
-          boxShadow: '0 24px 80px rgba(26,58,29,0.12)',
-          backgroundImage: `url(${cleanEnergyImg})`,
-          backgroundSize: 'cover', backgroundPosition: 'center',
-          minHeight: 560,
+        <div className="cev-split" style={{
           display: 'flex',
+          borderRadius: '2.25rem', overflow: 'hidden',
+          border: '1px solid rgba(121,174,111,0.18)',
+          boxShadow: '0 24px 80px rgba(26,58,29,0.10)',
+          minHeight: 560,
         }}>
-          {/* Full-bg subtle overlay — image visible everywhere */}
-          <div style={{ position: 'absolute', inset: 0, background: 'rgba(242,237,194,0.72)' }} />
-          {/* Left-side gentle vignette to improve text legibility */}
-          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(242,237,194,0.45) 0%, rgba(242,237,194,0.18) 55%, rgba(242,237,194,0) 100%)' }} />
-          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(26,58,29,0.12) 0%, transparent 60%)' }} />
+          {/* Left: image panel */}
+          <div className="cev-split-img" style={{
+            position: 'relative', flex: '0 0 44%',
+            backgroundImage: `url(${cleanEnergyImg})`,
+            backgroundSize: 'cover', backgroundPosition: 'center',
+          }}>
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(26,58,29,0.15) 0%, rgba(26,58,29,0.45) 100%)' }} />
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, transparent 70%, rgba(255,255,255,0.08) 100%)' }} />
+            {/* Floating badge on image */}
+            <div style={{ position: 'absolute', bottom: '2rem', left: '2rem', zIndex: 2 }}>
+              <div style={{
+                display: 'inline-flex', alignItems: 'center', gap: '0.45rem',
+                padding: '0.4rem 1rem', borderRadius: '999px',
+                border: '1px solid rgba(242,237,194,0.2)',
+                background: 'rgba(26,58,29,0.6)', backdropFilter: 'blur(12px)',
+                color: 'rgba(242,237,194,0.92)', fontSize: '0.62rem', fontWeight: 800,
+                letterSpacing: '0.18em', textTransform: 'uppercase',
+              }}>
+                <span style={{ width: 5, height: 5, borderRadius: '50%', background: 'var(--mint)', flexShrink: 0 }} />
+                Program Integrator
+              </div>
+            </div>
+          </div>
 
-          {/* Left: text content */}
-          <div className="card-text-right" style={{ position: 'relative', zIndex: 2, padding: '3.5rem 3.25rem', marginLeft: 0, width: '58%', minWidth: 320 }}>
+          {/* Right: content panel */}
+          <div className="cev-split-content" style={{
+            flex: 1, padding: '3.5rem 3.25rem',
+            background: 'rgba(255,255,255,0.55)',
+            display: 'flex', flexDirection: 'column', justifyContent: 'center',
+          }}>
             <div style={{ color: 'var(--forest-light)', fontWeight: 700, fontSize: '0.7rem', letterSpacing: '0.22em', textTransform: 'uppercase', marginBottom: '0.9rem' }}>
               End-to-End Program Integration
             </div>
@@ -154,9 +174,8 @@ const CleanEnergyVisionPage = ({ t }) => {
 
             {/* Deliverables panel */}
             <div style={{
-              border: '1px solid rgba(121,174,111,0.25)', borderRadius: '1.75rem',
-              padding: '1.75rem 1.75rem', background: 'rgba(255,255,255,0.65)',
-              backdropFilter: 'blur(12px)'
+              border: '1px solid rgba(121,174,111,0.22)', borderRadius: '1.5rem',
+              padding: '1.75rem', background: 'rgba(255,255,255,0.7)',
             }}>
               <div style={{ fontWeight: 900, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--forest)', marginBottom: '1.1rem', fontSize: '0.75rem' }}>
                 Program Integrator Scope

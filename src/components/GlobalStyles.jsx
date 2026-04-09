@@ -97,27 +97,32 @@ const GlobalStyles = () => (
     .navbar-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
     .navbar-actions { display: flex; align-items: center; gap: 1rem; }
 
-    /* Pill group that wraps all desktop nav links */
+    /* Desktop nav links — open, premium layout */
     .navbar-links-pill {
-      display: flex; align-items: center; gap: 0.25rem;
-      background: rgba(255,255,255,0.09);
-      border: 1px solid rgba(255,255,255,0.14);
-      backdropFilter: blur(12px);
-      border-radius: 999px;
-      padding: 0.35rem 0.45rem;
-      transition: background 0.4s, border-color 0.4s;
+      display: flex; align-items: center; gap: 0.15rem;
+      background: transparent;
+      border: none;
+      padding: 0;
+      transition: none;
     }
 
-    /* Scrolled state — adapt pill to light cream navbar background */
+    /* Scrolled state — no container changes needed */
     .navbar-links-pill[data-scrolled="true"] {
-      background: rgba(45,90,49,0.08);
-      border-color: rgba(121,174,111,0.22);
+      background: transparent;
+      border-color: transparent;
     }
-    .navbar-links-pill[data-scrolled="true"] .nav-link:hover { background: rgba(45,90,49,0.1); }
+    .navbar-links-pill[data-scrolled="true"] .nav-link:hover {
+      background: transparent;
+      opacity: 1;
+    }
     .navbar-links-pill[data-scrolled="true"] .nav-link-active {
-      background: var(--forest) !important;
-      color: var(--cream) !important;
-      box-shadow: 0 2px 10px rgba(26,58,29,0.2);
+      background: transparent !important;
+      color: var(--forest-deep) !important;
+      opacity: 1;
+      box-shadow: none;
+    }
+    .navbar-links-pill[data-scrolled="true"] .nav-link-active::after {
+      background: var(--forest);
     }
 
     .nav-toggle {
@@ -185,22 +190,42 @@ const GlobalStyles = () => (
     .contact-card { flex: 1 1 420px; min-width: 280px; }
     .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
 
-    /* ── Nav links ── */
+    /* ── Nav links — premium underline style ── */
     .nav-link {
-      position: relative; font-size: 0.68rem; font-weight: 700;
+      position: relative; font-size: 0.68rem; font-weight: 600;
       letter-spacing: 0.16em; text-transform: uppercase;
-      padding: 0.45rem 0.9rem; border-radius: 999px;
-      transition: background 0.2s, color 0.2s;
+      padding: 0.5rem 1rem; border-radius: 0;
+      background: transparent;
+      opacity: 0.75;
+      transition: opacity 0.3s ease, color 0.3s ease;
       white-space: nowrap;
     }
-    .nav-link:hover { background: rgba(255,255,255,0.1); }
+    .nav-link::after {
+      content: ''; position: absolute;
+      bottom: 0; left: 50%; width: 0; height: 1.5px;
+      background: currentColor;
+      transition: width 0.35s cubic-bezier(0.25,0.46,0.45,0.94), left 0.35s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    .nav-link:hover {
+      background: transparent;
+      opacity: 1;
+    }
+    .nav-link:hover::after {
+      width: 60%; left: 20%;
+    }
     .nav-link-active {
-      background: rgba(255,255,255,0.18) !important;
+      background: transparent !important;
       color: white !important;
-      box-shadow: 0 1px 6px rgba(0,0,0,0.12);
+      opacity: 1 !important;
+      font-weight: 700;
+      box-shadow: none;
+    }
+    .nav-link-active::after {
+      width: 60% !important; left: 20% !important;
+      background: currentColor;
     }
 
-    /* ── Form inputs ── */
+    /* ── Form inputs (dark bg) ── */
     .form-input {
       width: 100%; background: rgba(255,255,255,0.06); color: var(--cream);
       border: 1px solid rgba(255,255,255,0.1); padding: 1.1rem 1.4rem;
@@ -211,6 +236,26 @@ const GlobalStyles = () => (
     .form-input:focus {
       border-color: var(--mint); background: rgba(255,255,255,0.1);
       box-shadow: 0 0 0 3px rgba(159,203,152,0.15);
+    }
+
+    /* ── Form inputs (light bg) ── */
+    .form-input-light {
+      width: 100%; background: rgba(255,255,255,0.8); color: var(--forest-deep);
+      border: 1px solid rgba(121,174,111,0.2); padding: 0.95rem 1.2rem;
+      border-radius: 0.85rem; outline: none; font-family: 'DM Sans', sans-serif;
+      font-size: 0.92rem; transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
+    }
+    .form-input-light::placeholder { color: rgba(45,90,49,0.3); }
+    .form-input-light:focus {
+      border-color: var(--sage); background: #fff;
+      box-shadow: 0 0 0 3px rgba(121,174,111,0.12);
+    }
+
+    /* ── Contact form split card ── */
+    @media (max-width: 640px) {
+      .cf-split { flex-direction: column !important; min-height: auto !important; }
+      .cf-split-left { flex: none !important; padding: 2rem 1.75rem !important; }
+      .cf-split-right { padding: 2rem 1.75rem !important; }
     }
 
     /* ── Misc ── */
@@ -334,7 +379,7 @@ const GlobalStyles = () => (
     /* ── Responsive ── */
     @media (max-width: 1024px) {
       .navbar-links-pill { gap: 0; }
-      .nav-link { padding: 0.4rem 0.7rem; font-size: 0.65rem; }
+      .nav-link { padding: 0.45rem 0.65rem; font-size: 0.62rem; }
       .section-split { gap: 3rem; }
       .contact-grid { gap: 2.5rem; }
       .carousel-slide { flex: 0 0 calc(50% - 1rem); min-width: calc(50% - 1rem); }
@@ -376,6 +421,13 @@ const GlobalStyles = () => (
 
     @media (min-width: 1024px) {
       .nav-get-started { display: none !important; }
+    }
+
+    /* ── Clean Energy split layout ── */
+    @media (max-width: 768px) {
+      .cev-split { flex-direction: column !important; }
+      .cev-split-img { flex: none !important; min-height: 280px; }
+      .cev-split-content { padding: 2.25rem 1.75rem !important; }
     }
 
     /* ── Service card slide-up (PFAS page) ── */
