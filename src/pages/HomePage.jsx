@@ -32,7 +32,7 @@ const Hero = ({ t }) => (
       <div className="blob blob-b" />
     </div>
 
-    <div style={{ position: 'relative', zIndex: 10, maxWidth: '1280px', margin: '0 auto', padding: '0 2rem', width: '100%', paddingTop: '8rem' }}>
+    <div className="hero-content-wrapper" style={{ position: 'relative', zIndex: 10, maxWidth: '1280px', margin: '0 auto', padding: '0 1.25rem', width: '100%', paddingTop: '7rem', boxSizing: 'border-box' }}>
 
       <h1 className="fade-up-2" style={{
         fontFamily: "'Playfair Display', serif",

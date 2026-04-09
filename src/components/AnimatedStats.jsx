@@ -112,7 +112,7 @@ const AnimatedStats = () => {
         <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 1, background: 'linear-gradient(to right, transparent, rgba(159,203,152,0.08), transparent)' }} />
       </div>
 
-      <div style={{ position: 'relative', zIndex: 2, maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }}>
+      <div style={{ position: 'relative', zIndex: 2, maxWidth: '1280px', margin: '0 auto', padding: '0 1.25rem' }}>
         {/* Section heading */}
         <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
           <div style={{ color: 'rgba(159,203,152,0.7)', fontWeight: 700, fontSize: '0.65rem', letterSpacing: '0.25em', textTransform: 'uppercase', marginBottom: '0.75rem' }}>
@@ -130,7 +130,7 @@ const AnimatedStats = () => {
 
         {/* Stats grid */}
         <div style={{
-          display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+          display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(200px, 100%), 1fr))',
           gap: '1.5rem', textAlign: 'center',
         }}>
           {stats.map(({ value, prefix, suffix, label, desc }, i) => (

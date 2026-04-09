@@ -14,7 +14,7 @@ const BackToTop = () => {
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
       aria-label="Back to top"
       style={{
-        position: 'fixed', bottom: '2rem', left: '2rem', zIndex: 9999,
+        position: 'fixed', bottom: '1.5rem', left: '1.25rem', zIndex: 9999,
         width: 44, height: 44, borderRadius: '50%',
         background: 'rgba(26,58,29,0.85)', color: 'var(--mint)',
         border: '1px solid rgba(159,203,152,0.2)',

@@ -52,7 +52,7 @@ const Testimonials = () => {
       position: 'relative', padding: '6rem 0', overflow: 'hidden',
       background: 'linear-gradient(180deg, rgba(26,58,29,0.03) 0%, rgba(26,58,29,0.08) 100%)',
     }}>
-      <div style={{ maxWidth: '800px', margin: '0 auto', padding: '0 2rem', textAlign: 'center' }}>
+      <div style={{ maxWidth: '800px', margin: '0 auto', padding: '0 1.25rem', textAlign: 'center' }}>
         <div style={{ color: 'var(--sage)', fontWeight: 700, fontSize: '0.65rem', letterSpacing: '0.25em', textTransform: 'uppercase', marginBottom: '1rem' }}>
           What our clients say
         </div>

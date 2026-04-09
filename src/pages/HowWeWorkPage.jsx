@@ -74,20 +74,20 @@ const HowWeWorkPage = ({ t }) => {
 
     {/* Four phases */}
     <section data-reveal style={{ padding: '7rem 0 5rem' }}>
-      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }}>
+      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1.25rem' }}>
         <div style={{
           position: 'relative', borderRadius: '2.25rem', overflow: 'hidden',
           border: '1px solid rgba(121,174,111,0.2)',
           boxShadow: '0 24px 80px rgba(26,58,29,0.18)',
           backgroundImage: `url(${cityCleanImg})`,
           backgroundSize: 'cover', backgroundPosition: 'center',
-          minHeight: 520, display: 'flex',
+          display: 'flex',
         }}>
           {/* Subtle full-bg overlay — image visible everywhere */}
           <div style={{ position: 'absolute', inset: 0, background: 'rgba(26,58,29,0.52)' }} />
           {/* Left-side legibility gradient */}
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(26,58,29,0.68) 0%, rgba(26,58,29,0.22) 55%, rgba(26,58,29,0) 100%)' }} />
-          <div className="card-text-right" style={{ position: 'relative', zIndex: 2, padding: '3.5rem 3.25rem', width: '62%', minWidth: 320 }}>
+          <div className="card-text-right" style={{ position: 'relative', zIndex: 2, padding: '3.5rem 3.25rem', width: '62%', minWidth: 0 }}>
             <div style={{ color: 'rgba(159,203,152,0.7)', fontWeight: 700, fontSize: '0.7rem', letterSpacing: '0.22em', textTransform: 'uppercase', marginBottom: '0.9rem' }}>
               Program Delivery Framework
             </div>
@@ -151,9 +151,10 @@ const HowWeWorkPage = ({ t }) => {
           borderRadius: '2rem', overflow: 'hidden',
           background: 'linear-gradient(135deg, var(--forest) 0%, var(--forest-deep) 100%)',
           border: '1px solid rgba(159,203,152,0.12)',
-          padding: '3rem 3.25rem'
+          padding: 'clamp(1.5rem, 4vw, 3rem) clamp(1.25rem, 4vw, 3.25rem)',
+          boxSizing: 'border-box',
         }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', flexWrap: 'wrap', alignItems: 'start' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(280px, 100%), 1fr))', gap: '2rem', alignItems: 'start' }}>
             <div>
               <div style={{ color: 'rgba(159,203,152,0.7)', fontWeight: 700, fontSize: '0.7rem', letterSpacing: '0.22em', textTransform: 'uppercase', marginBottom: '0.9rem' }}>
                 How We Think

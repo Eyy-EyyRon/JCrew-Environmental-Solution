@@ -92,7 +92,7 @@ const ServiceMap = () => {
       {/* Subtle ambient glow */}
       <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', width: 600, height: 600, borderRadius: '50%', background: 'radial-gradient(circle, rgba(159,203,152,0.05) 0%, transparent 70%)', pointerEvents: 'none' }} />
 
-      <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 2rem' }}>
+      <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 1.25rem' }}>
         <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
           <div style={{ color: 'rgba(159,203,152,0.7)', fontWeight: 700, fontSize: '0.65rem', letterSpacing: '0.25em', textTransform: 'uppercase', marginBottom: '1rem' }}>
             Coverage Area
