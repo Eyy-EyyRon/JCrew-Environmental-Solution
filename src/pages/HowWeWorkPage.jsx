@@ -124,7 +124,7 @@ const HowWeWorkPage = ({ t }) => {
 
     {/* Core capabilities */}
     <section data-reveal style={{ padding: '0 0 5rem' }}>
-      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }}>
+      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1.25rem' }}>
         <div style={{ marginBottom: '2.25rem' }}>
           <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', color: 'var(--forest)', fontWeight: 900, letterSpacing: '-0.02em', marginBottom: '0.5rem' }}>
             Core capabilities
@@ -133,7 +133,7 @@ const HowWeWorkPage = ({ t }) => {
             Four practice areas that work together to deliver complete, defensible environmental programs.
           </p>
         </div>
-        <div data-stagger style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.25rem' }}>
+        <div data-stagger style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(260px, 100%), 1fr))', gap: '1.25rem' }}>
           {capabilities.map(({ title, desc, accent }) => (
             <div key={title} className="slide-card slide-card-light" style={{ borderTop: `3px solid ${accent}` }}>
               <div style={{ color: 'var(--forest)', fontWeight: 800, fontSize: '1.08rem', marginBottom: '0.65rem', letterSpacing: '0.01em' }}>{title}</div>
@@ -146,7 +146,7 @@ const HowWeWorkPage = ({ t }) => {
 
     {/* Guiding principles */}
     <section data-reveal style={{ padding: '0 0 6rem' }}>
-      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }}>
+      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1.25rem' }}>
         <div style={{
           borderRadius: '2rem', overflow: 'hidden',
           background: 'linear-gradient(135deg, var(--forest) 0%, var(--forest-deep) 100%)',
@@ -187,7 +187,7 @@ const HowWeWorkPage = ({ t }) => {
         <div className="aurora-blob aurora-b" />
         <div className="aurora-blob aurora-c" />
       </div>
-      <div style={{ position: 'relative', zIndex: 2, maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }} className="contact-grid">
+      <div style={{ position: 'relative', zIndex: 2, maxWidth: '1280px', margin: '0 auto', padding: '0 1.25rem' }} className="contact-grid">
         <div className="contact-details">
           <div style={{ color: 'rgba(159,203,152,0.7)', fontWeight: 700, fontSize: '0.7rem', letterSpacing: '0.22em', textTransform: 'uppercase', marginBottom: '0.9rem' }}>
             Ready to get started?
