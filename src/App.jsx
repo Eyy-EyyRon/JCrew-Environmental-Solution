@@ -6,6 +6,9 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import { SkeletonHome, SkeletonPage } from './components/Skeletons';
 import FAQWidget from './components/FAQ';
+import ScrollProgress from './components/ScrollProgress';
+import BackToTop from './components/BackToTop';
+import CursorGlow from './components/CursorGlow';
 import translations from './translations';
 
 import HomePage from './pages/HomePage';
@@ -87,6 +90,38 @@ export default function App() {
     return () => clearTimeout(timer);
   }, [route, loading]);
 
+  // Stagger observer
+  useEffect(() => {
+    if (loading) return;
+    const staggerEls = Array.from(document.querySelectorAll('[data-stagger]'));
+    const io = new IntersectionObserver(
+      entries => entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('stagger-in');
+        io.unobserve(entry.target);
+      }),
+      { threshold: 0.15 }
+    );
+    staggerEls.forEach(el => io.observe(el));
+    return () => io.disconnect();
+  }, [route, loading]);
+
+  // Parallax effect
+  useEffect(() => {
+    const parallaxEls = Array.from(document.querySelectorAll('.parallax-bg'));
+    if (!parallaxEls.length) return;
+    const onScroll = () => {
+      parallaxEls.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        const speed = parseFloat(el.dataset.speed || '0.15');
+        const y = (rect.top * speed);
+        el.style.transform = `translateY(${y}px)`;
+      });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [route, loading]);
+
   useEffect(() => {
     if (route !== '') return;
     const sections = ['sectors', 'pfas-response', 'contact']
@@ -109,6 +144,8 @@ export default function App() {
   return (
     <>
       <GlobalStyles />
+      <ScrollProgress />
+      <CursorGlow />
       <div style={{ fontFamily: "'DM Sans', sans-serif" }}>
         <Navbar t={t} forceSolid={route !== ''} activeRoute={route} activeSection={activeSection} />
         <main>
@@ -130,6 +167,7 @@ export default function App() {
         </main>
         <Footer />
         <FAQWidget />
+        <BackToTop />
       </div>
     </>
   );

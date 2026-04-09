@@ -1,5 +1,10 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { IconArrowRight, IconGear, IconCoin, IconClipboard, IconScale, IconMapPin, IconPhone, IconMail } from '../components/icons';
+import TypedText from '../components/TypedText';
+import AnimatedStats from '../components/AnimatedStats';
+import LogoMarquee from '../components/LogoMarquee';
+import Testimonials from '../components/Testimonials';
+import ServiceMap from '../components/ServiceMap';
 
 import heroVideo from '../assets/Hero-Home-small.mp4';
 import rainwaterCollectionImg from '../assets/rainwatercollection.webp';
@@ -15,7 +20,7 @@ import waterCupImg from '../assets/watercup.jpg';
 const Hero = ({ t }) => (
   <header style={{ position: 'relative', minHeight: '100vh', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
     <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
-      <video autoPlay loop muted playsInline preload="metadata" style={{ width: '100%', height: '100%', objectFit: 'cover' }}>
+      <video autoPlay loop muted playsInline preload="metadata" className="parallax-bg" data-speed="0.08" style={{ width: '100%', height: '110%', objectFit: 'cover' }}>
         <source src={heroVideo} type="video/mp4" />
       </video>
       <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(26,58,29,0.94) 0%, rgba(45,90,49,0.62) 50%, rgba(26,58,29,0.38) 100%)' }} />
@@ -44,7 +49,7 @@ const Hero = ({ t }) => (
         fontSize: '1.15rem', color: 'rgba(242,237,194,0.75)',
         maxWidth: '560px', lineHeight: 1.75, fontWeight: 300, marginBottom: '2.75rem'
       }}>
-        {t.heroSub}
+        <TypedText text={t.heroSub} speed={25} delay={1200} />
       </p>
 
       <div className="fade-up-4 hero-actions">
@@ -310,7 +315,7 @@ const Strategy = ({ t }) => {
           <p style={{ fontSize: '1.08rem', color: 'rgba(242,237,194,0.65)', lineHeight: 1.8, fontWeight: 300, marginBottom: '2.5rem' }}>
             {t.strategySub}
           </p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(190px, 1fr))', gap: '1.15rem' }}>
+          <div data-stagger style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(190px, 1fr))', gap: '1.15rem' }}>
             {[
               ['Technical', 'Investigation & Engineering Oversight', <IconGear />],
               ['Financial', 'Funding Strategy & Procurement Support', <IconCoin />],
@@ -428,8 +433,12 @@ const Contact = ({ t }) => (
 const HomePage = ({ t }) => (
   <>
     <Hero t={t} />
+    <LogoMarquee />
     <Sectors t={t} />
+    <AnimatedStats />
     <Strategy t={t} />
+    <Testimonials />
+    <ServiceMap />
     <Contact t={t} />
   </>
 );

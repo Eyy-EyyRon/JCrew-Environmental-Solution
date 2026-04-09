@@ -72,6 +72,48 @@ const GlobalStyles = () => (
     .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .reveal-in { opacity: 1; transform: translateY(0); }
 
+    /* ── Staggered reveal children ── */
+    [data-stagger] > * {
+      opacity: 0; transform: translateY(18px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    [data-stagger].stagger-in > *:nth-child(1) { transition-delay: 0s; }
+    [data-stagger].stagger-in > *:nth-child(2) { transition-delay: 0.08s; }
+    [data-stagger].stagger-in > *:nth-child(3) { transition-delay: 0.16s; }
+    [data-stagger].stagger-in > *:nth-child(4) { transition-delay: 0.24s; }
+    [data-stagger].stagger-in > *:nth-child(5) { transition-delay: 0.32s; }
+    [data-stagger].stagger-in > *:nth-child(6) { transition-delay: 0.40s; }
+    [data-stagger].stagger-in > *:nth-child(7) { transition-delay: 0.48s; }
+    [data-stagger].stagger-in > *:nth-child(8) { transition-delay: 0.56s; }
+    [data-stagger].stagger-in > * { opacity: 1; transform: translateY(0); }
+
+    /* ── Logo marquee ── */
+    .marquee-wrapper { overflow: hidden; width: 100%; }
+    .marquee-track {
+      display: flex; gap: 1rem; width: max-content;
+      animation: marqueeScroll 35s linear infinite;
+    }
+    .marquee-wrapper:hover .marquee-track { animation-play-state: paused; }
+    @keyframes marqueeScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ── Typed text cursor ── */
+    .typed-cursor {
+      display: inline-block; width: 2px; height: 1em;
+      background: var(--sage); margin-left: 2px;
+      vertical-align: text-bottom;
+      animation: cursorBlink 0.8s step-end infinite;
+    }
+    @keyframes cursorBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+    /* ── Parallax helper ── */
+    .parallax-bg {
+      will-change: transform;
+      transition: transform 0.1s linear;
+    }
+
     /* ── Ambient blobs ── */
     .ambient { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
     .blob {

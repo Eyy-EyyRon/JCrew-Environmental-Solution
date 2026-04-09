@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { IconCheck } from '../components/icons';
 import PageHero from '../components/PageHero';
 import ContactForm from '../components/ContactForm';
+import BeforeAfterSlider from '../components/BeforeAfterSlider';
 
 import heroPFASVideo from '../assets/Hero-PSAF-small.mp4';
 import riverImg from '../assets/river1.webp';
@@ -172,6 +173,19 @@ const PFASResponseDivisionPage = ({ t }) => {
             </div>
           ))}
         </div>
+      </div>
+    </section>
+
+    {/* Before/After */}
+    <section data-reveal style={{ padding: '5rem 0 6rem' }}>
+      <div style={{ maxWidth: '900px', margin: '0 auto', padding: '0 2rem' }}>
+        <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+          <div style={{ color: 'var(--sage)', fontWeight: 700, fontSize: '0.65rem', letterSpacing: '0.25em', textTransform: 'uppercase', marginBottom: '0.75rem' }}>Project Impact</div>
+          <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(1.8rem, 3.5vw, 2.5rem)', fontWeight: 900, color: 'var(--forest)', lineHeight: 1.1 }}>
+            Site remediation <span style={{ color: 'var(--sage)', fontStyle: 'italic' }}>in action</span>
+          </h2>
+        </div>
+        <BeforeAfterSlider beforeImg={wastewater2Img} afterImg={waterTreatmentPlantImg} beforeLabel="Pre-Treatment" afterLabel="Post-Remediation" />
       </div>
     </section>
 

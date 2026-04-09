@@ -100,13 +100,20 @@ const HowWeWorkPage = ({ t }) => {
               Four phases of{' '}
               <span style={{ color: 'var(--mint)', fontStyle: 'italic' }}>program delivery</span>
             </h2>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.5rem' }}>
-              {phases.map(({ num, title, desc }) => (
-                <div key={num} className="slide-card slide-card-dark">
-                  <div style={{ color: 'var(--mint)', fontWeight: 900, fontSize: '1.5rem', letterSpacing: '-0.02em', marginBottom: '0.5rem', lineHeight: 1 }}>{num}</div>
-                  <div style={{ height: 1, background: 'linear-gradient(to right, rgba(159,203,152,0.3), transparent)', marginBottom: '0.85rem' }} />
-                  <div style={{ color: 'var(--cream)', fontWeight: 700, fontSize: '1.02rem', marginBottom: '0.6rem', lineHeight: 1.3 }}>{title}</div>
-                  <p style={{ color: 'rgba(242,237,194,0.6)', lineHeight: 1.75, fontSize: '0.9rem' }}>{desc}</p>
+            <div className="timeline-track" data-stagger style={{ position: 'relative', display: 'flex', flexDirection: 'column', gap: '0' }}>
+              {/* Vertical line */}
+              <div style={{ position: 'absolute', left: 15, top: 0, bottom: 0, width: 2, background: 'linear-gradient(to bottom, rgba(159,203,152,0.4), rgba(159,203,152,0.08))', zIndex: 0 }} />
+              {phases.map(({ num, title, desc }, i) => (
+                <div key={num} style={{ position: 'relative', display: 'flex', gap: '1.5rem', paddingBottom: i < phases.length - 1 ? '2rem' : 0, zIndex: 1 }}>
+                  {/* Node */}
+                  <div style={{ width: 32, height: 32, borderRadius: '50%', background: 'var(--forest-deep)', border: '2px solid var(--mint)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, position: 'relative', zIndex: 2 }}>
+                    <span style={{ color: 'var(--mint)', fontWeight: 900, fontSize: '0.7rem' }}>{num}</span>
+                  </div>
+                  {/* Content */}
+                  <div style={{ flex: 1, paddingTop: 2 }}>
+                    <div style={{ color: 'var(--cream)', fontWeight: 700, fontSize: '1.02rem', marginBottom: '0.4rem', lineHeight: 1.3 }}>{title}</div>
+                    <p style={{ color: 'rgba(242,237,194,0.6)', lineHeight: 1.75, fontSize: '0.88rem' }}>{desc}</p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -126,7 +133,7 @@ const HowWeWorkPage = ({ t }) => {
             Four practice areas that work together to deliver complete, defensible environmental programs.
           </p>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.25rem' }}>
+        <div data-stagger style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.25rem' }}>
           {capabilities.map(({ title, desc, accent }) => (
             <div key={title} className="slide-card slide-card-light" style={{ borderTop: `3px solid ${accent}` }}>
               <div style={{ color: 'var(--forest)', fontWeight: 800, fontSize: '1.08rem', marginBottom: '0.65rem', letterSpacing: '0.01em' }}>{title}</div>
