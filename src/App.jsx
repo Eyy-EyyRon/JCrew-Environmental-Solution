@@ -5,6 +5,7 @@ import GlobalStyles from './components/GlobalStyles';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import { SkeletonHome, SkeletonPage } from './components/Skeletons';
+import FAQWidget from './components/FAQ';
 import translations from './translations';
 
 import HomePage from './pages/HomePage';
@@ -128,6 +129,7 @@ export default function App() {
           </AnimatePresence>
         </main>
         <Footer />
+        <FAQWidget />
       </div>
     </>
   );

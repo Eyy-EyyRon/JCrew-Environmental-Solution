@@ -423,6 +423,18 @@ const GlobalStyles = () => (
       .nav-get-started { display: none !important; }
     }
 
+    /* ── FAQ scrollbar ── */
+    .faq-scroll::-webkit-scrollbar { width: 4px; }
+    .faq-scroll::-webkit-scrollbar-track { background: transparent; }
+    .faq-scroll::-webkit-scrollbar-thumb { background: rgba(159,203,152,0.25); border-radius: 4px; }
+    .faq-scroll::-webkit-scrollbar-thumb:hover { background: rgba(159,203,152,0.4); }
+    .faq-scroll { scrollbar-width: thin; scrollbar-color: rgba(159,203,152,0.25) transparent; }
+
+    /* ── FAQ floating widget responsive ── */
+    @media (max-width: 480px) {
+      .faq-fab { bottom: 1.25rem !important; right: 1.25rem !important; width: 50px !important; height: 50px !important; }
+    }
+
     /* ── Footer aurora effect ── */
     .aurora-blob {
       position: absolute;
