@@ -79,9 +79,8 @@ const HowWeWorkPage = ({ t }) => {
           position: 'relative', borderRadius: '2.25rem', overflow: 'hidden',
           border: '1px solid rgba(121,174,111,0.2)',
           boxShadow: '0 24px 80px rgba(26,58,29,0.18)',
-          backgroundImage: `url(${cityCleanImg})`,
-          backgroundSize: 'cover', backgroundPosition: 'center',
-          display: 'flex',
+          background: `var(--forest-deep) url(${cityCleanImg}) center / cover no-repeat`,
+          display: 'flex', minHeight: 420,
         }}>
           {/* Subtle full-bg overlay — image visible everywhere */}
           <div style={{ position: 'absolute', inset: 0, background: 'rgba(26,58,29,0.52)' }} />
@@ -100,7 +99,7 @@ const HowWeWorkPage = ({ t }) => {
               Four phases of{' '}
               <span style={{ color: 'var(--mint)', fontStyle: 'italic' }}>program delivery</span>
             </h2>
-            <div className="timeline-track" data-stagger style={{ position: 'relative', display: 'flex', flexDirection: 'column', gap: '0' }}>
+            <div className="timeline-track" style={{ position: 'relative', display: 'flex', flexDirection: 'column', gap: '0' }}>
               {/* Vertical line */}
               <div style={{ position: 'absolute', left: 15, top: 0, bottom: 0, width: 2, background: 'linear-gradient(to bottom, rgba(159,203,152,0.4), rgba(159,203,152,0.08))', zIndex: 0 }} />
               {phases.map(({ num, title, desc }, i) => (
@@ -119,27 +118,25 @@ const HowWeWorkPage = ({ t }) => {
             </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    {/* Core capabilities */}
-    <section data-reveal style={{ padding: '0 0 5rem' }}>
-      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1.25rem' }}>
-        <div style={{ marginBottom: '2.25rem' }}>
-          <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', color: 'var(--forest)', fontWeight: 900, letterSpacing: '-0.02em', marginBottom: '0.5rem' }}>
-            Core capabilities
-          </h3>
-          <p style={{ color: 'rgba(45,90,49,0.62)', fontSize: '1rem', lineHeight: 1.65, maxWidth: 560 }}>
-            Four practice areas that work together to deliver complete, defensible environmental programs.
-          </p>
-        </div>
-        <div data-stagger style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(260px, 100%), 1fr))', gap: '1.25rem' }}>
-          {capabilities.map(({ title, desc, accent }) => (
-            <div key={title} className="slide-card slide-card-light" style={{ borderTop: `3px solid ${accent}` }}>
-              <div style={{ color: 'var(--forest)', fontWeight: 800, fontSize: '1.08rem', marginBottom: '0.65rem', letterSpacing: '0.01em' }}>{title}</div>
-              <p style={{ color: 'rgba(45,90,49,0.7)', lineHeight: 1.75, fontSize: '0.93rem' }}>{desc}</p>
-            </div>
-          ))}
+        {/* Core capabilities — inside the same section */}
+        <div style={{ marginTop: '4rem' }}>
+          <div style={{ marginBottom: '2.25rem' }}>
+            <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', color: 'var(--forest)', fontWeight: 900, letterSpacing: '-0.02em', marginBottom: '0.5rem' }}>
+              Core capabilities
+            </h3>
+            <p style={{ color: 'rgba(45,90,49,0.62)', fontSize: '1rem', lineHeight: 1.65, maxWidth: 560 }}>
+              Four practice areas that work together to deliver complete, defensible environmental programs.
+            </p>
+          </div>
+          <div data-stagger style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(260px, 100%), 1fr))', gap: '1.25rem' }}>
+            {capabilities.map(({ title, desc, accent }) => (
+              <div key={title} className="slide-card slide-card-light" style={{ borderTop: `3px solid ${accent}` }}>
+                <div style={{ color: 'var(--forest)', fontWeight: 800, fontSize: '1.08rem', marginBottom: '0.65rem', letterSpacing: '0.01em' }}>{title}</div>
+                <p style={{ color: 'rgba(45,90,49,0.7)', lineHeight: 1.75, fontSize: '0.93rem' }}>{desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
