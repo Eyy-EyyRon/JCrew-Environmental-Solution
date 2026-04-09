@@ -1,7 +1,29 @@
 import React from 'react';
+import footerHillsImg from '../assets/footer-hills.webp';
 
 const Footer = () => (
-  <footer style={{ background: 'var(--forest-deep)', borderTop: '1px solid rgba(121,174,111,0.12)', padding: '3rem 2rem' }}>
+  <footer style={{
+    position: 'relative', overflow: 'hidden',
+    borderTop: 'none', padding: 0,
+  }}>
+    {/* Background image */}
+    <img
+      src={footerHillsImg}
+      alt=""
+      loading="lazy"
+      decoding="async"
+      style={{
+        position: 'absolute', inset: 0, width: '100%', height: '100%',
+        objectFit: 'cover', objectPosition: 'center top',
+        zIndex: 0,
+      }}
+    />
+    {/* Overlay for text legibility */}
+    <div style={{
+      position: 'absolute', inset: 0, zIndex: 1,
+      background: 'linear-gradient(to bottom, rgba(26,58,29,0.3) 0%, rgba(26,58,29,0.75) 40%, rgba(26,58,29,0.92) 100%)',
+    }} />
+    <div style={{ position: 'relative', zIndex: 2, padding: '5rem 2rem 3rem' }}>
     <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '2.5rem', marginBottom: '2.5rem' }}>
         <div>
@@ -45,6 +67,7 @@ const Footer = () => (
           Built for public agencies and complex sites.
         </p>
       </div>
+    </div>
     </div>
   </footer>
 );

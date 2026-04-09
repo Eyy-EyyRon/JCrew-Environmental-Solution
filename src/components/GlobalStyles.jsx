@@ -423,6 +423,11 @@ const GlobalStyles = () => (
       .nav-get-started { display: none !important; }
     }
 
+    /* ── Footer hills responsive ── */
+    @media (max-width: 768px) {
+      footer img[loading="lazy"] { height: 200px !important; }
+    }
+
     /* ── Clean Energy split layout ── */
     @media (max-width: 768px) {
       .cev-split { flex-direction: column !important; }
