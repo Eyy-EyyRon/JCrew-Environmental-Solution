@@ -79,20 +79,19 @@ const FundingAndAccountabilityPage = ({ t }) => {
 
     {/* Four financial phases */}
     <section data-reveal style={{ padding: '7rem 0 5rem' }}>
-      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }}>
+      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1.25rem' }}>
         <div style={{
           position: 'relative', borderRadius: '2.25rem', overflow: 'hidden',
           border: '1px solid rgba(121,174,111,0.2)',
           boxShadow: '0 24px 80px rgba(26,58,29,0.18)',
-          backgroundImage: `url(${colleaguesImg})`,
-          backgroundSize: 'cover', backgroundPosition: 'center',
-          minHeight: 520, display: 'flex',
+          background: `var(--forest-deep) url(${colleaguesImg}) center / cover no-repeat`,
+          minHeight: 420, display: 'flex',
         }}>
           {/* Subtle full-bg overlay — image visible everywhere */}
           <div style={{ position: 'absolute', inset: 0, background: 'rgba(26,58,29,0.52)' }} />
           {/* Left-side legibility gradient */}
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(26,58,29,0.68) 0%, rgba(26,58,29,0.25) 55%, rgba(26,58,29,0) 100%)' }} />
-          <div className="card-text-right" style={{ position: 'relative', zIndex: 2, padding: '3.5rem 3.25rem', width: '62%', minWidth: 320 }}>
+          <div className="card-text-right" style={{ position: 'relative', zIndex: 2, padding: '3.5rem 3.25rem', width: '62%', minWidth: 0 }}>
             <div style={{ color: 'rgba(159,203,152,0.7)', fontWeight: 700, fontSize: '0.7rem', letterSpacing: '0.22em', textTransform: 'uppercase', marginBottom: '0.9rem' }}>
               Financial Program Structure
             </div>
@@ -105,7 +104,7 @@ const FundingAndAccountabilityPage = ({ t }) => {
               Financial integrity,{' '}
               <span style={{ color: 'var(--mint)', fontStyle: 'italic' }}>programmatic accountability</span>
             </h2>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.5rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(220px, 100%), 1fr))', gap: '1.5rem' }}>
               {fundingPhases.map(({ num, title, desc }) => (
                 <div key={num} className="slide-card slide-card-dark">
                   <div style={{ color: 'var(--mint)', fontWeight: 900, fontSize: '1.5rem', letterSpacing: '-0.02em', marginBottom: '0.5rem', lineHeight: 1 }}>{num}</div>
@@ -122,7 +121,7 @@ const FundingAndAccountabilityPage = ({ t }) => {
 
     {/* Service cards */}
     <section data-reveal style={{ padding: '0 0 5rem' }}>
-      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }}>
+      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1.25rem' }}>
         <div style={{ marginBottom: '2.25rem' }}>
           <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', color: 'var(--forest)', fontWeight: 900, letterSpacing: '-0.02em', marginBottom: '0.5rem' }}>
             Financial services we provide
@@ -131,7 +130,7 @@ const FundingAndAccountabilityPage = ({ t }) => {
             Structured financial management that keeps every program fundable, auditable, and accountable throughout delivery.
           </p>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.25rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(260px, 100%), 1fr))', gap: '1.25rem' }}>
           {services.map(({ title, desc }) => (
             <div key={title} className="info-card">
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.6rem', marginBottom: '0.6rem' }}>
@@ -147,13 +146,14 @@ const FundingAndAccountabilityPage = ({ t }) => {
 
     {/* Funding sources */}
     <section data-reveal style={{ padding: '0 0 6rem' }}>
-      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }}>
+      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1.25rem' }}>
         <div style={{
-          borderRadius: '2rem', padding: '3rem 3.25rem',
+          borderRadius: '2rem', padding: 'clamp(1.5rem, 4vw, 3rem) clamp(1.25rem, 4vw, 3.25rem)',
           background: 'linear-gradient(135deg, var(--forest) 0%, var(--forest-deep) 100%)',
           border: '1px solid rgba(159,203,152,0.12)',
+          boxSizing: 'border-box',
         }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', flexWrap: 'wrap', alignItems: 'start' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(280px, 100%), 1fr))', gap: '2rem', alignItems: 'start' }}>
             <div>
               <div style={{ color: 'rgba(159,203,152,0.7)', fontWeight: 700, fontSize: '0.7rem', letterSpacing: '0.22em', textTransform: 'uppercase', marginBottom: '0.9rem' }}>
                 Funding Sources
@@ -166,7 +166,7 @@ const FundingAndAccountabilityPage = ({ t }) => {
                 We identify eligible funding sources, align program structure to funder requirements, and build documentation systems that satisfy grant compliance.
               </p>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.65rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(160px, 100%), 1fr))', gap: '0.65rem' }}>
               {fundingSources.map((source) => (
                 <div key={source} style={{
                   display: 'flex', alignItems: 'center', gap: '0.6rem',
@@ -190,16 +190,16 @@ const FundingAndAccountabilityPage = ({ t }) => {
 
     {/* Accountability callout */}
     <section data-reveal style={{ padding: '0 0 6rem' }}>
-      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }}>
+      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1.25rem' }}>
         <div style={{
-          borderRadius: '2rem', padding: '2.75rem 3rem',
+          borderRadius: '2rem', padding: 'clamp(1.5rem, 4vw, 2.75rem) clamp(1.25rem, 4vw, 3rem)',
           background: 'rgba(255,255,255,0.6)',
           border: '1px solid rgba(121,174,111,0.22)',
           boxShadow: '0 16px 60px rgba(26,58,29,0.08)',
           display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '2rem',
           justifyContent: 'space-between'
         }}>
-          <div style={{ flex: '1 1 360px' }}>
+          <div style={{ flex: '1 1 auto', minWidth: 0 }}>
             <div style={{ color: 'var(--forest-light)', fontWeight: 700, fontSize: '0.7rem', letterSpacing: '0.22em', textTransform: 'uppercase', marginBottom: '0.75rem' }}>
               Our Commitment
             </div>
@@ -231,7 +231,7 @@ const FundingAndAccountabilityPage = ({ t }) => {
         <div className="aurora-blob aurora-b" />
         <div className="aurora-blob aurora-c" />
       </div>
-      <div style={{ position: 'relative', zIndex: 2, maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }} className="contact-grid">
+      <div style={{ position: 'relative', zIndex: 2, maxWidth: '1280px', margin: '0 auto', padding: '0 1.25rem' }} className="contact-grid">
         <div className="contact-details">
           <div style={{ color: 'rgba(159,203,152,0.7)', fontWeight: 700, fontSize: '0.7rem', letterSpacing: '0.22em', textTransform: 'uppercase', marginBottom: '0.9rem' }}>
             Funding & Accountability Division
