@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-
+import OfflineFallback from './OfflineFallback';  // ✅ no change needed here
 import GlobalStyles from './components/GlobalStyles';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -27,11 +27,23 @@ export default function App() {
   const t = translations.en;
   const [activeSection, setActiveSection] = useState('');
   const [loading, setLoading] = useState(true);
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
 
   const [route, setRoute] = useState(() => {
     const h = window.location.hash || '';
     return h.startsWith('#/') ? h.slice(1) : '';
   });
+
+  useEffect(() => {
+    const handleOnline = () => setIsOnline(true);
+    const handleOffline = () => setIsOnline(false);
+    window.addEventListener('online', handleOnline);
+    window.addEventListener('offline', handleOffline);
+    return () => {
+      window.removeEventListener('online', handleOnline);
+      window.removeEventListener('offline', handleOffline);
+    };
+  }, []);
 
   useEffect(() => {
     const onHashChange = () => {
@@ -90,7 +102,6 @@ export default function App() {
     return () => clearTimeout(timer);
   }, [route, loading]);
 
-  // Stagger observer
   useEffect(() => {
     if (loading) return;
     const staggerEls = Array.from(document.querySelectorAll('[data-stagger]'));
@@ -106,7 +117,6 @@ export default function App() {
     return () => io.disconnect();
   }, [route, loading]);
 
-  // Parallax effect
   useEffect(() => {
     const parallaxEls = Array.from(document.querySelectorAll('.parallax-bg'));
     if (!parallaxEls.length) return;
@@ -140,6 +150,16 @@ export default function App() {
     sections.forEach(s => io.observe(s));
     return () => io.disconnect();
   }, [route]);
+
+  // ✅ Offline gate — renders cleanly now that OfflineFallback has no bad imports
+  if (!isOnline) {
+    return (
+      <>
+        <GlobalStyles />
+        <OfflineFallback />
+      </>
+    );
+  }
 
   return (
     <>
