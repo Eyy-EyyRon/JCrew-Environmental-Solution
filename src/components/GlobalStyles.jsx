@@ -423,6 +423,49 @@ const GlobalStyles = () => (
       .nav-get-started { display: none !important; }
     }
 
+    /* ── Footer aurora effect ── */
+    .aurora-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.35;
+      mix-blend-mode: screen;
+      will-change: transform, opacity;
+    }
+    .aurora-a {
+      width: 500px; height: 320px;
+      top: -10%; left: 10%;
+      background: radial-gradient(ellipse at 40% 50%, rgba(159,203,152,0.7), rgba(121,174,111,0) 70%);
+      animation: auroraA 12s ease-in-out infinite alternate;
+    }
+    .aurora-b {
+      width: 450px; height: 280px;
+      top: 20%; right: 5%;
+      background: radial-gradient(ellipse at 60% 50%, rgba(121,174,111,0.6), rgba(45,90,49,0) 70%);
+      animation: auroraB 16s ease-in-out infinite alternate;
+    }
+    .aurora-c {
+      width: 380px; height: 260px;
+      bottom: 5%; left: 35%;
+      background: radial-gradient(ellipse at 50% 50%, rgba(159,203,152,0.5), rgba(159,203,152,0) 70%);
+      animation: auroraC 14s ease-in-out infinite alternate;
+    }
+    @keyframes auroraA {
+      0%   { transform: translate(0, 0) scale(1); opacity: 0.3; }
+      50%  { transform: translate(60px, 20px) scale(1.15); opacity: 0.45; }
+      100% { transform: translate(-30px, 30px) scale(1.05); opacity: 0.25; }
+    }
+    @keyframes auroraB {
+      0%   { transform: translate(0, 0) scale(1); opacity: 0.25; }
+      50%  { transform: translate(-50px, -15px) scale(1.1); opacity: 0.4; }
+      100% { transform: translate(40px, 25px) scale(0.95); opacity: 0.3; }
+    }
+    @keyframes auroraC {
+      0%   { transform: translate(0, 0) scale(1); opacity: 0.2; }
+      50%  { transform: translate(30px, -20px) scale(1.2); opacity: 0.38; }
+      100% { transform: translate(-40px, 10px) scale(1); opacity: 0.22; }
+    }
+
     /* ── Footer hills responsive ── */
     @media (max-width: 768px) {
       footer img[loading="lazy"] { height: 200px !important; }

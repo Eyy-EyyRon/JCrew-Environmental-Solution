@@ -176,28 +176,34 @@ const PFASResponseDivisionPage = ({ t }) => {
     </section>
 
     {/* Consultation */}
-    <section id="pfas-consultation" data-reveal style={{ padding: '0 0 8rem' }}>
-      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }} className="contact-grid">
+    <section id="pfas-consultation" data-reveal style={{ position: 'relative', padding: '6rem 0', overflow: 'hidden', background: 'var(--forest-deep)' }}>
+      {/* Aurora effect */}
+      <div style={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none', overflow: 'hidden' }}>
+        <div className="aurora-blob aurora-a" />
+        <div className="aurora-blob aurora-b" />
+        <div className="aurora-blob aurora-c" />
+      </div>
+      <div style={{ position: 'relative', zIndex: 2, maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }} className="contact-grid">
         <div className="contact-details">
-          <div style={{ color: 'var(--forest-light)', fontWeight: 700, fontSize: '0.7rem', letterSpacing: '0.22em', textTransform: 'uppercase', marginBottom: '0.9rem' }}>
+          <div style={{ color: 'rgba(159,203,152,0.7)', fontWeight: 700, fontSize: '0.7rem', letterSpacing: '0.22em', textTransform: 'uppercase', marginBottom: '0.9rem' }}>
             PFAS Response Division
           </div>
           <h2 style={{
             fontFamily: "'Playfair Display', serif",
             fontSize: 'clamp(2.6rem, 6vw, 4.2rem)',
-            fontWeight: 900, color: 'var(--forest)',
+            fontWeight: 900, color: 'var(--cream)',
             lineHeight: 1.02, letterSpacing: '-0.02em', marginBottom: '1.25rem'
           }}>
             Start with a{' '}
-            <span style={{ color: 'var(--sage)', fontStyle: 'italic' }}>confidential conversation</span>
+            <span style={{ color: 'var(--mint)', fontStyle: 'italic' }}>confidential conversation</span>
           </h2>
-          <p style={{ fontSize: '1.05rem', color: 'rgba(45,90,49,0.7)', lineHeight: 1.8, marginBottom: '1.75rem', maxWidth: 440 }}>
+          <p style={{ fontSize: '1.05rem', color: 'rgba(242,237,194,0.6)', lineHeight: 1.8, marginBottom: '1.75rem', maxWidth: 440 }}>
             No obligation. We'll review your PFAS program scope, deadlines, stakeholders, and documentation requirements and recommend a
             defensible next-step plan.
           </p>
           <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center' }}>
-            <span className="badge" style={{ marginBottom: 0, color: 'var(--forest)', borderColor: 'rgba(121,174,111,0.35)', background: 'rgba(121,174,111,0.1)' }}>
-              <span className="badge-dot" style={{ background: 'var(--forest)' }} />
+            <span className="badge" style={{ marginBottom: 0 }}>
+              <span className="badge-dot" />
               Call: (844) 878-7347
             </span>
           </div>

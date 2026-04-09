@@ -336,7 +336,13 @@ const Contact = ({ t }) => (
   <section id="contact" data-reveal style={{ position: 'relative', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '7rem 2rem', overflow: 'hidden' }}>
     <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
       <img src={waterCupImg} alt="" className="animate-slow-zoom" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(115deg, rgba(26,58,29,0.97) 0%, rgba(45,90,49,0.8) 50%, rgba(26,58,29,0.55) 100%)' }} />
+      {/* Aurora effect */}
+      <div style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none', overflow: 'hidden' }}>
+        <div className="aurora-blob aurora-a" />
+        <div className="aurora-blob aurora-b" />
+        <div className="aurora-blob aurora-c" />
+      </div>
+      <div style={{ position: 'absolute', inset: 0, zIndex: 2, background: 'linear-gradient(115deg, rgba(26,58,29,0.92) 0%, rgba(45,90,49,0.75) 50%, rgba(26,58,29,0.5) 100%)' }} />
     </div>
 
     <div style={{ position: 'relative', zIndex: 10, maxWidth: '1280px', width: '100%' }} className="contact-grid">

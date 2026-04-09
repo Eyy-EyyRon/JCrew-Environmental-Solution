@@ -18,12 +18,18 @@ const Footer = () => (
         zIndex: 0,
       }}
     />
+    {/* Aurora effect */}
+    <div style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none', overflow: 'hidden' }}>
+      <div className="aurora-blob aurora-a" />
+      <div className="aurora-blob aurora-b" />
+      <div className="aurora-blob aurora-c" />
+    </div>
     {/* Overlay for text legibility */}
     <div style={{
-      position: 'absolute', inset: 0, zIndex: 1,
-      background: 'linear-gradient(to bottom, rgba(26,58,29,0.3) 0%, rgba(26,58,29,0.75) 40%, rgba(26,58,29,0.92) 100%)',
+      position: 'absolute', inset: 0, zIndex: 2,
+      background: 'linear-gradient(to bottom, rgba(26,58,29,0.3) 0%, rgba(26,58,29,0.7) 45%, rgba(26,58,29,0.9) 100%)',
     }} />
-    <div style={{ position: 'relative', zIndex: 2, padding: '5rem 2rem 3rem' }}>
+    <div style={{ position: 'relative', zIndex: 3, padding: '5rem 2rem 3rem' }}>
     <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '2.5rem', marginBottom: '2.5rem' }}>
         <div>
